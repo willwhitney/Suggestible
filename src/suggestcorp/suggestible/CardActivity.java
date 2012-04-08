@@ -1,5 +1,6 @@
-package willcorp.suggestible;
+package suggestcorp.suggestible;
 
+import willcorp.suggestible.R;
 import android.app.Activity;
 import android.content.Context;
 import android.graphics.Typeface;
@@ -13,13 +14,14 @@ import android.view.MotionEvent;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-public class SuggestMain extends Activity implements OnGestureListener {
+public class CardActivity extends Activity implements OnGestureListener {
 
 	LocationManager locManager;
 	Location location;
 	TextView txt;
 	LinearLayout linear;
 	GestureDetector gdetect;
+	int screen = 0;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -29,6 +31,7 @@ public class SuggestMain extends Activity implements OnGestureListener {
         txt = (TextView) findViewById(R.id.locText);
         Typeface font = Typeface.createFromAsset(getAssets(), "fonts/Roboto-Thin.ttf");
         txt.setTypeface(font);
+
 
         linear = (LinearLayout) findViewById(R.id.linear);
 
@@ -66,10 +69,23 @@ public class SuggestMain extends Activity implements OnGestureListener {
 	public boolean onFling(MotionEvent arg0, MotionEvent arg1, float xvel,
 			float yvel) {
 		if(Math.abs(xvel) > Math.abs(yvel)) {
+
 			if(xvel > 0) {
-				txt.setText("Previous!");
+				if(screen > -1) {
+					if (screen == 0)
+						txt.setText("Previous!");
+					if (screen == 1)
+						txt.setText("Sushi sounds great right now.");
+					screen--;
+				}
 			} else {
-				txt.setText("Next!");
+				if(screen < 1) {
+					if (screen == 0)
+						txt.setText("Next!");
+					if (screen == -1)
+						txt.setText("Sushi sounds great right now.");
+					screen++;
+				}
 			}
 		}
 

@@ -6,26 +6,55 @@ android:orientation="vertical"
 android:layout_width="fill_parent"
 android:layout_height="fill_parent">
 
-<LinearLayout
-    android:orientation="vertical"
-    android:layout_width="fill_parent"
+<!-- <ViewFlipper
+	android:layout_width="fill_parent"
     android:layout_height="fill_parent"
-    android:background="#FFFFFF"
-    android:gravity="center"
-    android:layout_margin="15dp"
-    android:id="@+id/linear"    
-	>
-<TextView  
-    android:layout_width="fill_parent" 
-    android:layout_height="wrap_content"
-    android:textColor="#000000"
-    android:text="Sushi sounds great right now..."
-    android:textSize="40sp"
-    android:gravity="center_vertical"
-    android:padding="10dp"
-    android:paddingTop="30dp"
-    android:id="@+id/locText"
-    />
-</LinearLayout>
+    android:autoStart="true"
+    android:flipInterval="1000"
+    > -->
 
+	<LinearLayout
+	    android:orientation="vertical"
+	    android:layout_width="fill_parent"
+	    android:layout_height="fill_parent"
+	    android:background="@drawable/rounded_border"
+	    android:gravity="center"
+	    android:layout_margin="15dp"
+	    android:id="@+id/linear"    
+		>
+		<TextView  
+		    android:layout_width="fill_parent" 
+		    android:layout_height="wrap_content"
+		    android:textColor="#000000"
+		    android:text="Sushi sounds great right now..."
+		    android:textSize="40sp"
+		    android:gravity="center_vertical"
+		    android:padding="10dp"
+		    android:paddingTop="30dp"
+		    android:id="@+id/locText"
+		/>
+	</LinearLayout>
+	
+	<!-- <LinearLayout
+	    android:orientation="vertical"
+	    android:layout_width="fill_parent"
+	    android:layout_height="fill_parent"
+	    android:background="#FFFFFF"
+	    android:gravity="center"
+	    android:layout_margin="15dp"
+	    android:id="@+id/linear"    
+		>
+		<TextView  
+		    android:layout_width="fill_parent" 
+		    android:layout_height="wrap_content"
+		    android:textColor="#000000"
+		    android:text="fuck yeah!"
+		    android:textSize="40sp"
+		    android:gravity="center_vertical"
+		    android:padding="10dp"
+		    android:paddingTop="30dp"
+		    android:id="@+id/locText"
+		/>
+	</LinearLayout>
+</ViewFlipper> -->
 </RelativeLayout>
