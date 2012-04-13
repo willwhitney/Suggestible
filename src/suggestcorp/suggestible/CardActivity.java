@@ -78,7 +78,10 @@ public class CardActivity extends Activity implements OnGestureListener {
 
 
 			if(xvel > 0) {
+				
+				// This isn't correct, but want to set the animations based on which direction we're going
 				flipper.setInAnimation(AnimationUtils.loadAnimation(this, android.R.anim.slide_in_left));
+				
 				if(screen > -1) {
 					if (screen == 0)
 						txt.setText("Previous!");
@@ -113,6 +116,9 @@ public class CardActivity extends Activity implements OnGestureListener {
 
 	public boolean onScroll(MotionEvent arg0, MotionEvent arg1, float x,
 			float y) {
+		// need to add handling for when it's released
+		// if it's more than halfway, animate to the next one, otherwise animate back
+		// may not be able to do that in onScroll
 		RelativeLayout.LayoutParams params = (android.widget.RelativeLayout.LayoutParams) linear.getLayoutParams();
 		params.leftMargin -= (int) (x);
 		params.rightMargin += (int) (x);
