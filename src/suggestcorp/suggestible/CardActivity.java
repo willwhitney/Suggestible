@@ -1,6 +1,5 @@
 package suggestcorp.suggestible;
 
-import willcorp.suggestible.R;
 import android.app.Activity;
 import android.content.Context;
 import android.graphics.Typeface;
@@ -11,8 +10,11 @@ import android.util.Log;
 import android.view.GestureDetector;
 import android.view.GestureDetector.OnGestureListener;
 import android.view.MotionEvent;
+import android.view.animation.AnimationUtils;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.ViewFlipper;
 
 public class CardActivity extends Activity implements OnGestureListener {
 
@@ -22,6 +24,7 @@ public class CardActivity extends Activity implements OnGestureListener {
 	LinearLayout linear;
 	GestureDetector gdetect;
 	int screen = 0;
+	ViewFlipper flipper;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -32,8 +35,10 @@ public class CardActivity extends Activity implements OnGestureListener {
         Typeface font = Typeface.createFromAsset(getAssets(), "fonts/Roboto-Thin.ttf");
         txt.setTypeface(font);
 
+        flipper = (ViewFlipper) findViewById(R.id.flipper);
+        
 
-        linear = (LinearLayout) findViewById(R.id.linear);
+        linear = (LinearLayout) findViewById(R.id.card);
 
 
         Log.d("Suggestible", "I'm running!");
@@ -59,18 +64,21 @@ public class CardActivity extends Activity implements OnGestureListener {
     	return super.onTouchEvent(event);
     }
 
-	@Override
 	public boolean onDown(MotionEvent arg0) {
 		// TODO Auto-generated method stub
 		return false;
 	}
 
-	@Override
 	public boolean onFling(MotionEvent arg0, MotionEvent arg1, float xvel,
 			float yvel) {
+				
 		if(Math.abs(xvel) > Math.abs(yvel)) {
+			
+			RelativeLayout.LayoutParams params = (android.widget.RelativeLayout.LayoutParams) linear.getLayoutParams();
+
 
 			if(xvel > 0) {
+				flipper.setInAnimation(AnimationUtils.loadAnimation(this, android.R.anim.slide_in_left));
 				if(screen > -1) {
 					if (screen == 0)
 						txt.setText("Previous!");
@@ -87,31 +95,36 @@ public class CardActivity extends Activity implements OnGestureListener {
 					screen++;
 				}
 			}
+			
+			
+			params.leftMargin = 15;
+			params.rightMargin = 15;
+			linear.setLayoutParams(params);
+			return true;
 		}
 
-		return true;
+		return false;
 	}
 
-	@Override
 	public void onLongPress(MotionEvent arg0) {
 		// TODO Auto-generated method stub
 
 	}
 
-	@Override
-	public boolean onScroll(MotionEvent arg0, MotionEvent arg1, float arg2,
-			float arg3) {
-		// TODO Auto-generated method stub
-		return false;
+	public boolean onScroll(MotionEvent arg0, MotionEvent arg1, float x,
+			float y) {
+		RelativeLayout.LayoutParams params = (android.widget.RelativeLayout.LayoutParams) linear.getLayoutParams();
+		params.leftMargin -= (int) (x);
+		params.rightMargin += (int) (x);
+		linear.setLayoutParams(params);
+		return true;
 	}
 
-	@Override
 	public void onShowPress(MotionEvent arg0) {
 		// TODO Auto-generated method stub
 
 	}
 
-	@Override
 	public boolean onSingleTapUp(MotionEvent arg0) {
 		// TODO Auto-generated method stub
 		return false;

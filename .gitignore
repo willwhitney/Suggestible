@@ -1,2 +1,4 @@
-/bin/
-/gen/
+bin/*
+gen/*
+
+bin/classes/suggestcorp/suggestible/CardActivity.class

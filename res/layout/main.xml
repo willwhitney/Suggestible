@@ -1,60 +1,70 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-android:background="#000000"
-android:gravity="center"
-android:orientation="vertical"
+<ViewFlipper xmlns:android="http://schemas.android.com/apk/res/android"
 android:layout_width="fill_parent"
-android:layout_height="fill_parent">
+android:layout_height="fill_parent"
+android:autoStart="false"
+android:flipInterval="0"
+android:id="@+id/flipper">
 
-<!-- <ViewFlipper
+	<RelativeLayout 
+	android:background="#000000"
+	android:gravity="center"
+	android:orientation="vertical"
 	android:layout_width="fill_parent"
-    android:layout_height="fill_parent"
-    android:autoStart="true"
-    android:flipInterval="1000"
-    > -->
-
-	<LinearLayout
-	    android:orientation="vertical"
-	    android:layout_width="fill_parent"
-	    android:layout_height="fill_parent"
-	    android:background="@drawable/rounded_border"
-	    android:gravity="center"
-	    android:layout_margin="15dp"
-	    android:id="@+id/linear"    
-		>
-		<TextView  
-		    android:layout_width="fill_parent" 
-		    android:layout_height="wrap_content"
-		    android:textColor="#000000"
-		    android:text="Sushi sounds great right now..."
-		    android:textSize="40sp"
-		    android:gravity="center_vertical"
-		    android:padding="10dp"
-		    android:paddingTop="30dp"
-		    android:id="@+id/locText"
-		/>
-	</LinearLayout>
+	android:layout_height="fill_parent">
 	
-	<!-- <LinearLayout
-	    android:orientation="vertical"
-	    android:layout_width="fill_parent"
-	    android:layout_height="fill_parent"
-	    android:background="#FFFFFF"
-	    android:gravity="center"
-	    android:layout_margin="15dp"
-	    android:id="@+id/linear"    
-		>
-		<TextView  
-		    android:layout_width="fill_parent" 
-		    android:layout_height="wrap_content"
-		    android:textColor="#000000"
-		    android:text="fuck yeah!"
-		    android:textSize="40sp"
-		    android:gravity="center_vertical"
-		    android:padding="10dp"
-		    android:paddingTop="30dp"
-		    android:id="@+id/locText"
-		/>
-	</LinearLayout>
-</ViewFlipper> -->
-</RelativeLayout>
+		<LinearLayout
+		    android:orientation="vertical"
+		    android:layout_width="fill_parent"
+		    android:layout_height="fill_parent"
+		    android:background="@drawable/rounded_border"
+		    android:gravity="center"
+		    android:layout_margin="15dp"
+		    android:id="@+id/card"    
+			>
+			<TextView  
+			    android:layout_width="fill_parent" 
+			    android:layout_height="wrap_content"
+			    android:textColor="#000000"
+			    android:text="Sushi sounds great right now..."
+			    android:textSize="40sp"
+			    android:gravity="center_vertical"
+			    android:padding="10dp"
+			    android:paddingTop="30dp"
+			    android:id="@+id/locText"
+			/>
+		</LinearLayout>
+		
+	</RelativeLayout>
+	
+	<RelativeLayout 
+	android:background="#000000"
+	android:gravity="center"
+	android:orientation="vertical"
+	android:layout_width="fill_parent"
+	android:layout_height="fill_parent">
+	
+		<LinearLayout
+		    android:orientation="vertical"
+		    android:layout_width="fill_parent"
+		    android:layout_height="fill_parent"
+		    android:background="@drawable/rounded_border"
+		    android:gravity="center"
+		    android:layout_margin="15dp"
+		    android:id="@+id/card2"    
+			>
+			<TextView  
+			    android:layout_width="fill_parent" 
+			    android:layout_height="wrap_content"
+			    android:textColor="#000000"
+			    android:text="woot!"
+			    android:textSize="40sp"
+			    android:gravity="center_vertical"
+			    android:padding="10dp"
+			    android:paddingTop="30dp"
+			    android:id="@+id/locText2"
+			/>
+		</LinearLayout>
+		
+	</RelativeLayout>
+</ViewFlipper>
