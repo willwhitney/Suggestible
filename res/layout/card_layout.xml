@@ -1,95 +1,46 @@
 <?xml version="1.0" encoding="utf-8"?>
-<uk.co.jasonfry.android.tools.ui.SwipeView xmlns:android="http://schemas.android.com/apk/res/android"
-android:layout_width="fill_parent"
-android:layout_height="fill_parent"
-android:autoStart="false"
-android:flipInterval="0"
-android:id="@+id/flipper">
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="fill_parent"
+	android:layout_height="fill_parent"
+>
+	<uk.co.jasonfry.android.tools.ui.SwipeView
+		android:layout_width="fill_parent"
+		android:layout_height="400dp"
+		android:autoStart="false"
+		android:flipInterval="0"
+		android:layout_weight="1"
+		android:id="@+id/flipper">
+		    
+	    <include 
+	        layout="@layout/card"
+	        android:id="@+id/card1"
+	    />
 	    
-    <include 
-        layout="@layout/card"
-        android:id="@+id/card1"
-    />
-    
-    <include 
-        layout="@layout/card"
-        android:id="@+id/card2"
-    />
-    
-    <include 
-        layout="@layout/card"
-        android:id="@+id/card3"
-    />
-    
-    <include 
-        layout="@layout/card"
-        android:id="@+id/card4"
-    />
-    
-    <include 
-        layout="@layout/card"
-        android:id="@+id/card5"
-    />
-
-	<!-- <RelativeLayout 
-	android:background="#000000"
-	android:gravity="center"
-	android:orientation="vertical"
-	android:layout_width="fill_parent"
-	android:layout_height="fill_parent">
-	
-		<LinearLayout
-		    android:orientation="vertical"
-		    android:layout_width="fill_parent"
-		    android:layout_height="fill_parent"
-		    android:background="@drawable/rounded_border"
-		    android:gravity="center"
-		    android:layout_margin="15dp"
-		    android:id="@+id/card"    
-			>
-			<TextView  
-			    android:layout_width="fill_parent" 
-			    android:layout_height="wrap_content"
-			    android:textColor="#000000"
-			    android:text="Sushi sounds great right now..."
-			    android:textSize="40sp"
-			    android:gravity="center_vertical"
-			    android:padding="10dp"
-			    android:paddingTop="30dp"
-			    android:id="@+id/txt"
-			/>
-		</LinearLayout>
+	    <include 
+	        layout="@layout/card"
+	        android:id="@+id/card2"
+	    />
+	    
+	    <include 
+	        layout="@layout/card"
+	        android:id="@+id/card3"
+	    />
+	    
+	    <include 
+	        layout="@layout/card"
+	        android:id="@+id/card4"
+	    />
+	    
+	    <include 
+	        layout="@layout/card"
+	        android:id="@+id/card5"
+	    />
+	    
+	</uk.co.jasonfry.android.tools.ui.SwipeView>
 		
-	</RelativeLayout>
-	
-	<RelativeLayout 
-	android:background="#000000"
-	android:gravity="center"
-	android:orientation="vertical"
-	android:layout_width="fill_parent"
-	android:layout_height="fill_parent">
-	
-		<LinearLayout
-		    android:orientation="vertical"
-		    android:layout_width="fill_parent"
-		    android:layout_height="fill_parent"
-		    android:background="@drawable/rounded_border"
-		    android:gravity="center"
-		    android:layout_margin="15dp"
-		    android:id="@+id/card2"    
-			>
-			<TextView  
-			    android:layout_width="fill_parent" 
-			    android:layout_height="wrap_content"
-			    android:textColor="#000000"
-			    android:text="woot!"
-			    android:textSize="40sp"
-			    android:gravity="center_vertical"
-			    android:padding="10dp"
-			    android:paddingTop="30dp"
-			    android:id="@+id/locText2"
-			/>
-		</LinearLayout>
-		
-	</RelativeLayout> -->
-</uk.co.jasonfry.android.tools.ui.SwipeView>
+	<include
+	    layout="@layout/filter_layout"
+	    android:id="@+id/filters"
+	/>
+</LinearLayout>

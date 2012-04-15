@@ -21,7 +21,7 @@ public class CardActivity extends Activity {
 	RelativeLayout card1;
 	uk.co.jasonfry.android.tools.ui.SwipeView swiper;
 	OnDemandCardmaker cardmaker;
-	final Typeface font = Typeface.createFromAsset(getAssets(), "fonts/Roboto-Thin.ttf");
+	
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -35,7 +35,7 @@ public class CardActivity extends Activity {
         swiper = (uk.co.jasonfry.android.tools.ui.SwipeView) findViewById(R.id.flipper);
         card1 = (RelativeLayout) findViewById(R.id.card1);
         
-//        final Typeface font = Typeface.createFromAsset(getAssets(), "fonts/Roboto-Thin.ttf");
+        final Typeface font = Typeface.createFromAsset(getAssets(), "fonts/Roboto-Thin.ttf");
 //        txt.setTypeface(font);
 		final ViewGroup mContainer = (ViewGroup) findViewById(android.R.id.content).getRootView();
 		CardActivity.setAppFont(mContainer, font);
@@ -55,8 +55,15 @@ public class CardActivity extends Activity {
 //				LayoutParams params = (android.widget.RelativeLayout.LayoutParams) card1.getLayoutParams();
 				View newCard = new View(CardActivity.this);
 				newCard.inflate(CardActivity.this, R.layout.card, (ViewGroup) swiper);
+
 				final ViewGroup mContainer = (ViewGroup) findViewById(android.R.id.content).getRootView();
+				final Typeface font = Typeface.createFromAsset(getAssets(), "fonts/Roboto-Thin.ttf");
 				CardActivity.setAppFont(mContainer, font);
+				
+				// THIS IS HOW YOU ASSIGN STRINGS AS IDs
+				// http://stackoverflow.com/questions/3937010/array-of-imagebuttons-assign-r-view-id-from-a-variable
+//				int resID = getResources().getIdentifier(btnID, "drawable", "com.your.package");
+//				(ImageButton) findViewById(resID);
 
 				
 			}

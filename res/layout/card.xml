@@ -5,28 +5,48 @@
 	android:gravity="center"
 	android:orientation="vertical"
 	android:layout_width="fill_parent"
-	android:layout_height="fill_parent">
+	android:layout_height="fill_parent"
+	>
 	
 		<LinearLayout
 		    android:orientation="vertical"
 		    android:layout_width="fill_parent"
 		    android:layout_height="fill_parent"
 		    android:background="@drawable/rounded_border"
-		    android:gravity="center"
+		    android:gravity="bottom"
 		    android:layout_margin="15dp"
 		    android:id="@+id/card"    
 			>
 			<TextView  
 			    android:layout_width="fill_parent" 
-			    android:layout_height="wrap_content"
+			    android:layout_height="fill_parent"
 			    android:textColor="#000000"
 			    android:text="Sushi sounds great right now..."
 			    android:textSize="40sp"
 			    android:gravity="center_vertical"
-			    android:padding="10dp"
-			    android:paddingTop="30dp"
+			    android:padding="10px"
 			    android:id="@+id/txt"
 			/>
+			
+			<LinearLayout 
+			    android:orientation="horizontal"
+			    android:layout_width="fill_parent"
+			    android:layout_height="70dp"
+			    android:gravity="bottom|center_horizontal"
+			>
+			    <Button 
+			        android:layout_width="10dp"
+			        android:layout_height="fill_parent"
+			        android:text="B1"
+			        android:layout_weight="1"
+			    />
+			    <Button 
+			        android:layout_width="10dp"
+			        android:layout_height="fill_parent"
+			        android:text="B1"
+			        android:layout_weight="1"
+			    />
+			</LinearLayout>
 		</LinearLayout>
 		
 </RelativeLayout>

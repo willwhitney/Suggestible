@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<merge xmlns:android="http://schemas.android.com/apk/res/android">
+
+<LinearLayout 
+    android:orientation="horizontal"
+    android:layout_width="fill_parent"
+    android:layout_height="50dp"
+    android:gravity="bottom|center_horizontal"
+>
+	<Button 
+	      android:layout_width="10dp"
+	      android:layout_height="fill_parent"
+	      android:text="B1"
+	      android:layout_weight="1"
+	  />
+	  <Button 
+	      android:layout_width="10dp"
+	      android:layout_height="fill_parent"
+	      android:text="B1"
+	      android:layout_weight="1"
+	  />
+	  <Button 
+	      android:layout_width="10dp"
+	      android:layout_height="fill_parent"
+	      android:text="B1"
+	      android:layout_weight="1"
+	  />
+	  <Button 
+	      android:layout_width="10dp"
+	      android:layout_height="fill_parent"
+	      android:text="B1"
+	      android:layout_weight="1"
+	  />
+
+</LinearLayout>
+</merge>
