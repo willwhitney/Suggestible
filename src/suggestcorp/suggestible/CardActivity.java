@@ -24,7 +24,7 @@ public class CardActivity extends Activity implements OnGestureListener {
 	LinearLayout linear;
 	GestureDetector gdetect;
 	int screen = 0;
-	ViewFlipper flipper;
+	uk.co.jasonfry.android.tools.ui.SwipeView flipper;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -35,7 +35,7 @@ public class CardActivity extends Activity implements OnGestureListener {
         Typeface font = Typeface.createFromAsset(getAssets(), "fonts/Roboto-Thin.ttf");
         txt.setTypeface(font);
 
-        flipper = (ViewFlipper) findViewById(R.id.flipper);
+        flipper = (uk.co.jasonfry.android.tools.ui.SwipeView) findViewById(R.id.flipper);
         
 
         linear = (LinearLayout) findViewById(R.id.card);
@@ -80,7 +80,7 @@ public class CardActivity extends Activity implements OnGestureListener {
 			if(xvel > 0) {
 				
 				// This isn't correct, but want to set the animations based on which direction we're going
-				flipper.setInAnimation(AnimationUtils.loadAnimation(this, android.R.anim.slide_in_left));
+				//flipper.setInAnimation(AnimationUtils.loadAnimation(this, android.R.anim.slide_in_left));
 				
 				if(screen > -1) {
 					if (screen == 0)
