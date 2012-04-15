@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<merge xmlns:android="http://schemas.android.com/apk/res/android">
+<RelativeLayout 
+	android:background="#000000"
+	android:gravity="center"
+	android:orientation="vertical"
+	android:layout_width="fill_parent"
+	android:layout_height="fill_parent">
+	
+		<LinearLayout
+		    android:orientation="vertical"
+		    android:layout_width="fill_parent"
+		    android:layout_height="fill_parent"
+		    android:background="@drawable/rounded_border"
+		    android:gravity="center"
+		    android:layout_margin="15dp"
+		    android:id="@+id/card"    
+			>
+			<TextView  
+			    android:layout_width="fill_parent" 
+			    android:layout_height="wrap_content"
+			    android:textColor="#000000"
+			    android:text="Sushi sounds great right now..."
+			    android:textSize="40sp"
+			    android:gravity="center_vertical"
+			    android:padding="10dp"
+			    android:paddingTop="30dp"
+			    android:id="@+id/txt"
+			/>
+		</LinearLayout>
+		
+</RelativeLayout>
+</merge>
