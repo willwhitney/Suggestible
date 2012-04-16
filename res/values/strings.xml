@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">Suggestible</string>
-    <string name="card0">GET SUSHI</string>
-    <string name="card1">PIZZA RULES</string>
+    <string name="card0">Sushi sounds great right now...</string>
+    <string name="card1">I could really go for a pizza.</string>
     <string name="card2">Have you ever read Moby Dick?</string>
     <string name="card3">You should watch Iron Man!</string>
 </resources>

@@ -77,10 +77,7 @@ public class CardActivity extends Activity {
 				}
 				
 
-				final ViewGroup mContainer = (ViewGroup) findViewById(android.R.id.content).getRootView();
-				final Typeface font = Typeface.createFromAsset(getAssets(), "fonts/Roboto-Thin.ttf");
-				CardActivity.setAppFont(mContainer, font);
-				
+				fixFonts();
 				
 				
 
@@ -133,7 +130,7 @@ public class CardActivity extends Activity {
     
     public final void fixFonts() {
     	
-        final Typeface font = Typeface.createFromAsset(getAssets(), "fonts/Roboto-Thin.ttf");
+        final Typeface font = Typeface.createFromAsset(getAssets(), "fonts/Roboto-Regular.ttf");
 		final ViewGroup mContainer = (ViewGroup) findViewById(android.R.id.content).getRootView();
 		CardActivity.setAppFont(mContainer, font);
 
