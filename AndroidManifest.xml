@@ -18,5 +18,12 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        
+        <activity android:name = "BookInfoActivity" android:theme="@android:style/Theme.NoTitleBar"></activity>
+    <activity android:name = "RestaurantInfoActivity" android:theme="@android:style/Theme.NoTitleBar"></activity>
+    <activity android:name = "MovieInfoActivity" android:theme="@android:style/Theme.NoTitleBar"></activity>
+    <activity android:name = "PlaceInfoActivity" android:theme="@android:style/Theme.NoTitleBar"></activity>
+    <activity android:name = "MoreInfoActivity" android:theme="@android:style/Theme.NoTitleBar"></activity>
+    <activity android:name = "UndeleteActivity" android:theme="@android:style/Theme.NoTitleBar"></activity>
     </application>
 </manifest>

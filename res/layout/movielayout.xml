@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+	<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+	    android:layout_width="fill_parent"
+	    android:layout_height="fill_parent"
+	    >
+	
+	<LinearLayout 
+	    android:id = "@+id/infolayout"
+	    android:layout_width="fill_parent"
+	    android:layout_height="wrap_content"
+	    android:orientation="vertical" >
+	    
+	    <LinearLayout 
+		    android:layout_width="fill_parent"
+		    android:layout_height="200dip"
+		    android:orientation="horizontal" >
+		 <ImageView
+        	android:id="@+id/imageView1"
+        	android:layout_width="150dip"
+        	android:layout_height="200dip"
+        	android:src="@drawable/ironman" />
+	    <TextView
+	        android:id = "@+id/description1"
+	        android:layout_width="fill_parent"
+	        android:layout_height="fill_parent"
+	        android:textSize="22sp"
+	        android:text="@string/ironman" />
+	    </LinearLayout>
+	    <TextView
+	        android:id = "@+id/description2"
+	        android:layout_width="fill_parent"
+	        android:layout_height="100dip"
+			android:textSize="20sp"
+			android:text="@string/lorem" />
+	    
+	    <LinearLayout 
+	        android:layout_width="fill_parent"
+	    	android:layout_height="200dip"
+	    	android:orientation="vertical"
+	    	android:gravity="center_horizontal|center_vertical">
+
+	        <Button
+	            android:id="@+id/button1"
+	            android:layout_width="300dip"
+	            android:layout_height="50dip"
+	            android:text="@string/amazon" 
+	            android:gravity="center_horizontal|center_vertical"/>
+
+	        <Button
+	            android:id="@+id/button2"
+	            android:layout_width="300dip"
+	            android:layout_height="50dip"
+	            android:text="@string/theater" 
+	            android:gravity="center_horizontal|center_vertical"/>
+
+	        <Button
+	            android:id="@+id/button3"
+	            android:layout_width="300dip"
+	            android:layout_height="50dip"
+	            android:text="@string/imdb" 
+	            android:gravity="center_horizontal|center_vertical"/>
+	        
+	    </LinearLayout>
+	</LinearLayout>
+</ScrollView>

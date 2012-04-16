@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+  <declare-styleable name="ExpandablePanel">
+    <attr name="handle" format="reference" />
+    <attr name="content" format="reference" />
+    <attr name="collapsedHeight" format="dimension" />
+  </declare-styleable>
+</resources>

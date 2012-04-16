@@ -9,6 +9,7 @@ import android.location.Location;
 import android.location.LocationManager;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.KeyEvent;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
@@ -18,6 +19,7 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class CardActivity extends Activity {
 
@@ -27,8 +29,8 @@ public class CardActivity extends Activity {
 	RelativeLayout card1;
 	uk.co.jasonfry.android.tools.ui.SwipeView swiper;
 	OnDemandCardmaker cardmaker;
-	final int MAX_PAGES = 4;
-	int remainingPages = 4;
+	final int MAX_PAGES = 8;
+	int remainingPages = MAX_PAGES;
 	ImageButton[] filterButtons;
 	LinearLayout filters;
 	
@@ -104,41 +106,51 @@ public class CardActivity extends Activity {
 					getImageViewByPageNum(newpage).setImageResource(imageToSet);
 					
 					
-					if (newpage  + (MAX_PAGES - remainingPages) % 4 == 0) {
+					
+					if (newpage  + (MAX_PAGES - remainingPages) == 0) {
 						getCardButtonsByPageNum(newpage)[0].setOnClickListener(new OnClickListener() {
 							
 							public void onClick(View v) {
-								Intent detailsIntent = new Intent(CardActivity.this, MoreInfoActivity.class);
+								Intent detailsIntent = new Intent(CardActivity.this, PlaceInfoActivity.class);
 								CardActivity.this.startActivity(detailsIntent);
 							}
 							
 						});
-					} else if (newpage  + (MAX_PAGES - remainingPages) % 4 == 1) {
+					} else if (newpage  + (MAX_PAGES - remainingPages) == 1) {
 						getCardButtonsByPageNum(newpage)[0].setOnClickListener(new OnClickListener() {
 							
 							public void onClick(View v) {
-								Intent detailsIntent = new Intent(CardActivity.this, MoreInfoActivity.class);
+								Intent detailsIntent = new Intent(CardActivity.this, BookInfoActivity.class);
 								CardActivity.this.startActivity(detailsIntent);
 							}
 							
 						});
-					} else if (newpage  + (MAX_PAGES - remainingPages) % 4 == 2) {
+					} else if (newpage  + (MAX_PAGES - remainingPages) == 2) {
 						getCardButtonsByPageNum(newpage)[0].setOnClickListener(new OnClickListener() {
 							
 							public void onClick(View v) {
-								Intent detailsIntent = new Intent(CardActivity.this, MoreInfoActivity.class);
+								Intent detailsIntent = new Intent(CardActivity.this, MovieInfoActivity.class);
 								CardActivity.this.startActivity(detailsIntent);
 							}
 							
 						});
-					} else if (newpage  + (MAX_PAGES - remainingPages) % 4 == 3) {
+					} else if (newpage  + (MAX_PAGES - remainingPages) == 3) {
 						getCardButtonsByPageNum(newpage)[0].setOnClickListener(new OnClickListener() {
 							
 							public void onClick(View v) {
-								Intent detailsIntent = new Intent(CardActivity.this, MoreInfoActivity.class);
+								Intent detailsIntent = new Intent(CardActivity.this, RestaurantInfoActivity.class);
 								CardActivity.this.startActivity(detailsIntent);
 							}
 							
+						});
+					} else {
+						getCardButtonsByPageNum(newpage)[0].setOnClickListener(new OnClickListener() {
+							
+							public void onClick(View v) {
+
+								Toast.makeText(CardActivity.this, "not implemented", Toast.LENGTH_SHORT).show();
+								
+							}
 						});
 					}
 					
@@ -204,6 +216,54 @@ public class CardActivity extends Activity {
 				int imageToSet = getResources().getIdentifier("card" + (swiper.getPageCount() - 1 + (MAX_PAGES - remainingPages)), "drawable", "suggestcorp.suggestible");
 				getImageViewByPageNum(swiper.getPageCount() - 1).setImageResource(imageToSet);
 				
+				if (swiper.getPageCount() - 1  + (MAX_PAGES - remainingPages) % 4 == 0) {
+					getCardButtonsByPageNum(swiper.getPageCount() - 1)[0].setOnClickListener(new OnClickListener() {
+						
+						public void onClick(View v) {
+							Intent detailsIntent = new Intent(CardActivity.this, PlaceInfoActivity.class);
+							CardActivity.this.startActivity(detailsIntent);
+						}
+						
+					});
+				} else if (swiper.getPageCount() - 1  + (MAX_PAGES - remainingPages) % 4 == 1) {
+					getCardButtonsByPageNum(swiper.getPageCount() - 1)[0].setOnClickListener(new OnClickListener() {
+						
+						public void onClick(View v) {
+							Intent detailsIntent = new Intent(CardActivity.this, BookInfoActivity.class);
+							CardActivity.this.startActivity(detailsIntent);
+						}
+						
+					});
+				} else if (swiper.getPageCount() - 1  + (MAX_PAGES - remainingPages) % 4 == 2) {
+					getCardButtonsByPageNum(swiper.getPageCount() - 1)[0].setOnClickListener(new OnClickListener() {
+						
+						public void onClick(View v) {
+							Intent detailsIntent = new Intent(CardActivity.this, MovieInfoActivity.class);
+							CardActivity.this.startActivity(detailsIntent);
+						}
+						
+					});
+				} else if (swiper.getPageCount() - 1  + (MAX_PAGES - remainingPages) % 4 == 3) {
+					getCardButtonsByPageNum(swiper.getPageCount() - 1)[0].setOnClickListener(new OnClickListener() {
+						
+						public void onClick(View v) {
+							Intent detailsIntent = new Intent(CardActivity.this, RestaurantInfoActivity.class);
+							CardActivity.this.startActivity(detailsIntent);
+						}
+						
+					});
+				} else {
+					getCardButtonsByPageNum(swiper.getPageCount() - 1)[0].setOnClickListener(new OnClickListener() {
+						
+						public void onClick(View v) {
+
+							Toast.makeText(CardActivity.this, "not implemented", Toast.LENGTH_SHORT).show();
+							
+						}
+					});
+				}
+				
+				
 				getCardButtonsByPageNum(swiper.getPageCount() - 1)[1].setOnClickListener(new OnClickListener() {
 
 					public void onClick(View v) {
@@ -220,6 +280,15 @@ public class CardActivity extends Activity {
     	
     }
     
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        if ( keyCode == KeyEvent.KEYCODE_MENU ) {
+        	Intent detailsIntent = new Intent(CardActivity.this, UndeleteActivity.class);
+			CardActivity.this.startActivity(detailsIntent);
+            return true;
+        }
+        return super.onKeyDown(keyCode, event);
+    }
     
     public void updateFilters() {
     	for (int i = 0; i < 4; i++) {
