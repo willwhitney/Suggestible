@@ -13,38 +13,46 @@
 		    android:layout_width="fill_parent"
 		    android:layout_height="fill_parent"
 		    android:background="@drawable/rounded_border"
-		    android:gravity="bottom"
+		    android:gravity="center_horizontal|bottom"
 		    android:layout_margin="15dp"
-		    android:id="@+id/card"    
 			>
 			<TextView  
 			    android:layout_width="fill_parent" 
-			    android:layout_height="fill_parent"
+			    android:layout_height="200dp"
 			    android:textColor="#000000"
 			    android:text="Sushi sounds great right now..."
 			    android:textSize="40sp"
 			    android:gravity="center_vertical"
 			    android:padding="10px"
 			    android:id="@+id/txt"
+			    android:layout_weight="1"
 			/>
-			
+			<ImageView 
+			    android:layout_width="wrap_content"
+			    android:layout_height="200dp"
+			    android:src="@drawable/card0"
+			    android:paddingBottom="15dp"
+			    android:scaleType="centerInside"
+			/>
 			<LinearLayout 
 			    android:orientation="horizontal"
 			    android:layout_width="fill_parent"
-			    android:layout_height="70dp"
+			    android:layout_height="50dp"
 			    android:gravity="bottom|center_horizontal"
 			>
 			    <Button 
 			        android:layout_width="10dp"
 			        android:layout_height="fill_parent"
-			        android:text="B1"
+			        android:text="GET IT"
 			        android:layout_weight="1"
+			        android:tag="first"
 			    />
 			    <Button 
 			        android:layout_width="10dp"
 			        android:layout_height="fill_parent"
-			        android:text="B1"
+			        android:text="THIS SUCKS"
 			        android:layout_weight="1"
+			        android:tag="second"
 			    />
 			</LinearLayout>
 		</LinearLayout>

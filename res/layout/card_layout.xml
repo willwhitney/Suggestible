@@ -26,17 +26,7 @@
 	        layout="@layout/card"
 	        android:id="@+id/card3"
 	    />
-	    
-	    <include 
-	        layout="@layout/card"
-	        android:id="@+id/card4"
-	    />
-	    
-	    <include 
-	        layout="@layout/card"
-	        android:id="@+id/card5"
-	    />
-	    
+	    	    
 	</uk.co.jasonfry.android.tools.ui.SwipeView>
 		
 	<include
