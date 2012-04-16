@@ -6,31 +6,55 @@
     android:layout_width="fill_parent"
     android:layout_height="50dp"
     android:gravity="bottom|center_horizontal"
+    android:id="@+id/filters"
 >
 	<ImageButton 
+		  android:background="@drawable/rounded_border"
 	      android:layout_width="10dp"
 	      android:layout_height="fill_parent"
 	      android:text="places"
 	      android:layout_weight="1"
-	      android:src=""
+	      android:src="@drawable/places"
+	      android:scaleType="centerInside"
+	      android:layout_marginLeft="10dp"
+		  android:layout_marginRight="10dp"
+		  android:padding="5dp"
 	  />
 	  <ImageButton 
+	      android:background="#FFFFFF"
 	      android:layout_width="10dp"
 	      android:layout_height="fill_parent"
 	      android:text="books"
 	      android:layout_weight="1"
+	      android:src="@drawable/book"
+	      android:scaleType="centerInside"
+	      android:layout_marginLeft="10dp"
+		  android:layout_marginRight="10dp"
+	      android:padding="5dp"
 	  />
 	  <ImageButton 
+	      android:background="#FFFFFF"
 	      android:layout_width="10dp"
 	      android:layout_height="fill_parent"
 	      android:text="movies"
 	      android:layout_weight="1"
+	      android:src="@drawable/movie"
+	      android:scaleType="centerInside"
+	      android:layout_marginLeft="10dp"
+		  android:layout_marginRight="10dp"
+		  android:padding="5dp"
 	  />
 	  <ImageButton 
+	      android:background="#FFFFFF"
 	      android:layout_width="10dp"
 	      android:layout_height="fill_parent"
 	      android:text="food"
 	      android:layout_weight="1"
+	      android:src="@drawable/food"
+	      android:scaleType="centerInside"
+	      android:layout_marginLeft="10dp"
+		  android:layout_marginRight="10dp"
+		  android:padding="5dp"
 	  />
 
 </LinearLayout>

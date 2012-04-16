@@ -3,7 +3,7 @@ package suggestcorp.suggestible;
 import java.util.ArrayList;
 import java.util.Arrays;
 
-import willcorp.suggestible.R;
+import suggestcorp.suggestible.R;
 import android.app.Activity;
 import android.os.Bundle;
 import android.util.SparseBooleanArray;

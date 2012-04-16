@@ -1,18 +1,21 @@
 package suggestcorp.suggestible;
 
-import java.lang.reflect.Field;
-
 import uk.co.jasonfry.android.tools.ui.SwipeView.OnPageChangedListener;
 import android.app.Activity;
+import android.content.Intent;
+import android.graphics.Color;
 import android.graphics.Typeface;
 import android.location.Location;
 import android.location.LocationManager;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
@@ -25,6 +28,9 @@ public class CardActivity extends Activity {
 	uk.co.jasonfry.android.tools.ui.SwipeView swiper;
 	OnDemandCardmaker cardmaker;
 	final int MAX_PAGES = 4;
+	int remainingPages = 4;
+	ImageButton[] filterButtons;
+	LinearLayout filters;
 	
 
     @Override
@@ -36,6 +42,31 @@ public class CardActivity extends Activity {
         
         cardmaker = new OnDemandCardmaker();
         swiper = (uk.co.jasonfry.android.tools.ui.SwipeView) findViewById(R.id.flipper);
+        filterButtons = new ImageButton[4];
+        filters = (LinearLayout) findViewById(R.id.filters);
+        
+//        swiper.setPageWidth(400);
+                
+        for (int i = 0; i < 4; i++) {
+        	filterButtons[i] = (ImageButton) filters.getChildAt(i);
+        	filterButtons[i].setTag("on");
+        	filterButtons[i].setOnClickListener(new OnClickListener() {
+
+				public void onClick(View v) {
+					if (v.getTag().equals("on")) {
+						v.setTag("off");
+					} else {
+						v.setTag("on");
+					}
+					
+					updateFilters();
+					
+				}
+        		
+        	});
+        }
+        
+        updateFilters();
         
         
 //        int textToSet = getResources().getIdentifier("card" + 0, "string", "suggestcorp.suggestible");
@@ -61,20 +92,87 @@ public class CardActivity extends Activity {
     
     private class OnDemandCardmaker implements OnPageChangedListener {
 
-		public void onPageChanged(int oldpage, int newpage) {
+		public void onPageChanged(final int oldpage, final int newpage) {
 			
 			if (newpage > oldpage) {
 								
-				int textToSet = getResources().getIdentifier("card" + newpage, "string", "suggestcorp.suggestible");
-				getTextViewByPageNum(newpage).setText(textToSet);
+				if (newpage == 0) {
+					int textToSet = getResources().getIdentifier("card" + newpage, "string", "suggestcorp.suggestible");
+					getTextViewByPageNum(newpage).setText(textToSet);
+					
+					int imageToSet = getResources().getIdentifier("card" + newpage, "drawable", "suggestcorp.suggestible");
+					getImageViewByPageNum(newpage).setImageResource(imageToSet);
+					
+					
+					if (newpage  + (MAX_PAGES - remainingPages) % 4 == 0) {
+						getCardButtonsByPageNum(newpage)[0].setOnClickListener(new OnClickListener() {
+							
+							public void onClick(View v) {
+								Intent detailsIntent = new Intent(CardActivity.this, MoreInfoActivity.class);
+								CardActivity.this.startActivity(detailsIntent);
+							}
+							
+						});
+					} else if (newpage  + (MAX_PAGES - remainingPages) % 4 == 1) {
+						getCardButtonsByPageNum(newpage)[0].setOnClickListener(new OnClickListener() {
+							
+							public void onClick(View v) {
+								Intent detailsIntent = new Intent(CardActivity.this, MoreInfoActivity.class);
+								CardActivity.this.startActivity(detailsIntent);
+							}
+							
+						});
+					} else if (newpage  + (MAX_PAGES - remainingPages) % 4 == 2) {
+						getCardButtonsByPageNum(newpage)[0].setOnClickListener(new OnClickListener() {
+							
+							public void onClick(View v) {
+								Intent detailsIntent = new Intent(CardActivity.this, MoreInfoActivity.class);
+								CardActivity.this.startActivity(detailsIntent);
+							}
+							
+						});
+					} else if (newpage  + (MAX_PAGES - remainingPages) % 4 == 3) {
+						getCardButtonsByPageNum(newpage)[0].setOnClickListener(new OnClickListener() {
+							
+							public void onClick(View v) {
+								Intent detailsIntent = new Intent(CardActivity.this, MoreInfoActivity.class);
+								CardActivity.this.startActivity(detailsIntent);
+							}
+							
+						});
+					}
+					
+					
+					
+					
+					getCardButtonsByPageNum(newpage)[1].setOnClickListener(new OnClickListener() {
+	
+						public void onClick(View v) {
+							remainingPages--;
+							((ViewGroup) swiper.getChildAt(0)).removeView((View) v.getParent().getParent().getParent());
+							addCard();
+							
+						}
+						
+					});
 				
-				int imageToSet = getResources().getIdentifier("card" + newpage, "drawable", "suggestcorp.suggestible");
-				getImageViewByPageNum(newpage).setImageResource(imageToSet);
-
-				if (swiper.getPageCount() < MAX_PAGES) {
-					View newCard = new View(CardActivity.this);
-					newCard.inflate(CardActivity.this, R.layout.card, (ViewGroup) swiper);
 				}
+				
+				addCard();
+
+//				if (swiper.getPageCount() < MAX_PAGES) {
+//					View newCard = new View(CardActivity.this);
+//					newCard.inflate(CardActivity.this, R.layout.card, (ViewGroup) swiper);
+//					
+//					int textToSet2 = getResources().getIdentifier("card" + (swiper.getPageCount() - 1), "string", "suggestcorp.suggestible");
+//					getTextViewByPageNum(swiper.getPageCount() - 1).setText(textToSet2);
+//					
+//					int imageToSet2 = getResources().getIdentifier("card" + (swiper.getPageCount() - 1), "drawable", "suggestcorp.suggestible");
+//					getImageViewByPageNum(swiper.getPageCount() - 1).setImageResource(imageToSet2);
+//
+//				}
+				
+				
 				
 
 				fixFonts();
@@ -93,11 +191,73 @@ public class CardActivity extends Activity {
 			}
 			
 		}
+		
+		public void addCard() {
+			if (swiper.getPageCount() < remainingPages) {
+				View newCard = new View(CardActivity.this);
+				newCard.inflate(CardActivity.this, R.layout.card, (ViewGroup) swiper);
+				
+				
+				int textToSet = getResources().getIdentifier("card" + (swiper.getPageCount() - 1 + (MAX_PAGES - remainingPages)), "string", "suggestcorp.suggestible");
+				getTextViewByPageNum(swiper.getPageCount() - 1).setText(textToSet);
+				
+				int imageToSet = getResources().getIdentifier("card" + (swiper.getPageCount() - 1 + (MAX_PAGES - remainingPages)), "drawable", "suggestcorp.suggestible");
+				getImageViewByPageNum(swiper.getPageCount() - 1).setImageResource(imageToSet);
+				
+				getCardButtonsByPageNum(swiper.getPageCount() - 1)[1].setOnClickListener(new OnClickListener() {
+
+					public void onClick(View v) {
+						remainingPages--;
+						((ViewGroup) swiper.getChildAt(0)).removeView((View) v.getParent().getParent().getParent());
+						addCard();
+						
+					}
+					
+				});
+
+			}
+		}
     	
     }
     
     
-    
+    public void updateFilters() {
+    	for (int i = 0; i < 4; i++) {
+    		if (filterButtons[i].getTag().equals("on")) {
+    			filterButtons[i].setBackgroundColor(Color.parseColor("#F3F377"));
+//    			switch(i) {
+//    				case 0:
+//    					filterButtons[i].setImageResource(R.drawable.placesglow);
+//    					break;
+//    				case 1:
+//    					filterButtons[i].setImageResource(R.drawable.bookglow);
+//    					break;
+//    				case 2:
+//    					filterButtons[i].setImageResource(R.drawable.movieglow);
+//    					break;
+//    				case 3:
+//    					filterButtons[i].setImageResource(R.drawable.foodglow);
+//    					break;
+//    			}
+    		} else {
+    			filterButtons[i].setBackgroundColor(Color.parseColor("#AAAAAA"));
+//    			switch(i) {
+//					case 0:
+//						filterButtons[i].setImageResource(R.drawable.places);
+//						break;
+//					case 1:
+//						filterButtons[i].setImageResource(R.drawable.book);
+//						break;
+//					case 2:
+//						filterButtons[i].setImageResource(R.drawable.movie);
+//						break;
+//					case 3:
+//						filterButtons[i].setImageResource(R.drawable.food);
+//						break;
+//    			}
+    		}
+        } 
+    }
     
     
     /**
@@ -190,7 +350,7 @@ public class CardActivity extends Activity {
     	Button[] buttons = new Button[2];
     	
     	buttons[0] = (Button) getCardByPageNum(page).findViewWithTag("first");
-    	buttons[0] = (Button) getCardByPageNum(page).findViewWithTag("second");
+    	buttons[1] = (Button) getCardByPageNum(page).findViewWithTag("second");
     	
     	return buttons;
     }
