@@ -9,7 +9,10 @@ bin/classes/suggestcorp/suggestible/MoreInfoActivity.class
 
 bin/classes/suggestcorp/suggestible/UndeleteActivity.class
 
-
 .classpath
 
 .settings/*
+
+.settings/
+
+.settings/org.eclipse.ltk.core.refactoring.prefs
