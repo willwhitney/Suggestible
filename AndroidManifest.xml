@@ -24,6 +24,6 @@
     <activity android:name = "MovieInfoActivity" android:theme="@android:style/Theme.NoTitleBar"></activity>
     <activity android:name = "PlaceInfoActivity" android:theme="@android:style/Theme.NoTitleBar"></activity>
     <activity android:name = "MoreInfoActivity" android:theme="@android:style/Theme.NoTitleBar"></activity>
-    <activity android:name = "UndeleteActivity" android:theme="@android:style/Theme.NoTitleBar"></activity>
+    <activity android:name = "UndeleteActivity" android:label="Deleted Suggestions"></activity>
     </application>
 </manifest>

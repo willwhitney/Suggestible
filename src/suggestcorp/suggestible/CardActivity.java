@@ -92,7 +92,7 @@ public class CardActivity extends Activity {
 
     }
     
-    private class OnDemandCardmaker implements OnPageChangedListener {
+    public class OnDemandCardmaker implements OnPageChangedListener {
 
 		public void onPageChanged(final int oldpage, final int newpage) {
 			
