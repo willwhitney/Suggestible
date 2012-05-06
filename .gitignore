@@ -16,3 +16,5 @@ bin/classes/suggestcorp/suggestible/UndeleteActivity.class
 .settings/
 
 .settings/org.eclipse.ltk.core.refactoring.prefs
+
+.classpath
