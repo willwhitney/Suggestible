@@ -1,7 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+
     <string name="app_name">Suggestible</string>
-    
+    <string name="delete_title">Deleted Suggestions</string>
+    <string name="deleted_menu_button">Manage Deleted Suggestions</string>
+    <string name="about_menu_button">About</string>
+    <string name="about_title">About Suggestible</string>
+    <string name="about_text1">People often have trouble deciding what to do.</string>
+    <string name="about_text2">This application uses the power of suggestion to help you decide how to spend your free time based on day of the week, time of day, and your specification of suggestion category (such as food, places to go, books, movies). The application will start by selecting options from multiple categories randomly or you can specify a type of activity you are looking for and the suggestions will be filtered to fit that type.  You can filter by pressing the icons on the bottom of the main screen.</string>
+    <string name="about_text3">We believe that lots of services provide suggestions based on your previous purchases (like Amazon) or your previous visits (like Yelp) or even your music preferences (like Pandora) but that a purely spontaneous suggestion based on less history can be a really great and useful thing; it can get you to consider something you might never have been exposed to before.</string>
     <string name="card4">Go outside!</string>
     <string name="card1">Have you ever read Moby Dick?</string>
     <string name="card6">The Dark Knight</string>
@@ -10,7 +17,6 @@
     <string name="card5">Read Harry Potter.</string>
     <string name="card2">You should watch Iron Man!</string>
     <string name="card7">I could really go for a pizza.</string>
-    
     <string name="kindle">Kindle</string>
     <string name="library">Library</string>
     <string name="book_store">Book Store</string>
@@ -18,8 +24,7 @@
     <string name="theater">Theater</string>
     <string name="imdb">IMDB</string>
     <string name="lorem">Lorem ipsum dolor sit amet, donec odio turpis, donec turpis ut natoque scelerisque praesent, ornare nibh diam. Dictum sit dolor vestibulum, eu praesent dis. In aliquet convallis sodales consectetuer enim suspendisse, non pretium est velit lorem mauris nisl, ad pede, praesent non eros velit amet. Curabitur metus libero eget placerat ante faucibus, montes nonummy quaerat blandit, magna maecenas amet pede nec. Lacus libero mollis, vitae vitae magna netus, tortor eros maecenas risus libero. Magna vehicula voluptas, gravida ridiculus faucibus metus vulputate metus, venenatis risus felis eros, vulputate libero nec vitae in, metus ipsum. Tempor arcu vestibulum, donec tortor arcu libero. \n Aliquet rhoncus. Risus natoque nulla in sapien mollis, quisque in cras. In duis varius dictum in voluptatum etiam, ligula senectus in vivamus ut et, euismod pulvinar bibendum. Mattis id amet quis lobortis porta pede, non venenatis adipiscing euismod, fringilla integer arcu vestibulum mauris tellus consequat, aenean proin egestas nostra, vestibulum mauris. Felis magnis urna sollicitudin, in sed, nostra dignissim purus sed ante laoreet purus, sit pede ante. Faucibus nostrum, purus mollis sem voluptatem et dapibus, varius tellus per et vestibulum arcu imperdiet, vel praesent elit eu, sem suspendisse scelerisque nunc eget nullam leo. Lorem mollis amet sollicitudin. Massa consectetuer, laoreet massa hendrerit magna rutrum, a fermentum sit magnis, cras maecenas ullamcorper quisque ultrices tincidunt morbi.</string>
-	<string name="mobydick">Author: \nHerman Melville \nGenre: \nAdventure\nPublished: \nOct 18, 1851</string>
-	<string name="ironman">Directed By:\nJon Favreau \nGenre: \nAction\nStarring:\nRobert Downey Jr</string>
-    
-    
+    <string name="mobydick">Author: \nHerman Melville \nGenre: \nAdventure\nPublished: \nOct 18, 1851</string>
+    <string name="ironman">Directed By:\nJon Favreau \nGenre: \nAction\nStarring:\nRobert Downey Jr</string>
+
 </resources>
