@@ -230,6 +230,14 @@ public class CardActivity extends Activity {
 						
 						public void onClick(View v) {
 							Intent detailsIntent = new Intent(CardActivity.this, BookInfoActivity.class);
+							/*
+							 * Pass JSON variables to the new info display activity (id not included for books)
+							detailsIntent.putExtra("title", title);
+							detailsIntent.putExtra("imagesrc", imagesrc);
+							detailsIntent.putExtra("rating", rating);
+							detailsIntent.putExtra("description", description);
+							detailsIntent.putExtra("maplocation", maplocation);
+							*/
 							CardActivity.this.startActivity(detailsIntent);
 						}
 						
@@ -239,6 +247,15 @@ public class CardActivity extends Activity {
 						
 						public void onClick(View v) {
 							Intent detailsIntent = new Intent(CardActivity.this, MovieInfoActivity.class);
+							/*
+							 * Pass JSON variables to the new info display activity
+							detailsIntent.putExtra("title", title);
+                            detailsIntent.putExtra("imagesrc", imagesrc);
+                            detailsIntent.putExtra("rating", rating);
+                            detailsIntent.putExtra("description", description);
+                            detailsIntent.putExtra("maplocation", maplocation);
+                            detailsIntent.putExtra("id", id);
+                            */
 							CardActivity.this.startActivity(detailsIntent);
 						}
 						
