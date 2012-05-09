@@ -72,13 +72,33 @@
 	    
 	    </LinearLayout>
 	    <TextView
-	        android:layout_margin="5dip"      
-		    android:id = "@+id/description2"
+	        android:layout_marginTop="5dip"      
+	        android:layout_marginRight="5dip"
+	        android:layout_marginLeft="5dip"
+		    android:id = "@+id/descriptionSmall"
 	        android:layout_width="fill_parent"
-	        android:layout_height="200dip"
+	        android:layout_height="160dip"
 			android:textSize="16sp"
 			android:textColor="#000000"
-			android:text="@string/lorem" />
+			android:text="@string/lorem"/>  
+		<Button 
+		    android:id="@+id/showMoreButton"
+	        android:layout_width="fill_parent"
+	        android:layout_height="20dip"
+	        android:text="Show More" 
+	        android:background="#FFFFFF"
+	        android:layout_margin="5dip"
+	        android:onClick = "showMore"
+	        android:gravity="center_horizontal|center_vertical"/>
+		<TextView
+	        android:layout_margin="5dip"      
+		    android:id = "@+id/descriptionLarge"
+	        android:layout_width="fill_parent"
+	        android:layout_height="wrap_content"
+			android:textSize="16sp"
+			android:textColor="#000000"
+			android:text="@string/lorem" 
+			android:visibility="gone"/>
 	    
 	    <LinearLayout 
 	        android:layout_width="fill_parent"
