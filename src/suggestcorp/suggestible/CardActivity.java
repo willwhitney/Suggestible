@@ -236,7 +236,7 @@ public class CardActivity extends Activity {
 							detailsIntent.putExtra("imagesrc", imagesrc);
 							detailsIntent.putExtra("rating", rating);
 							detailsIntent.putExtra("description", description);
-							detailsIntent.putExtra("location", maplocation);
+							detailsIntent.putExtra("maplocation", maplocation);
 							*/
 							CardActivity.this.startActivity(detailsIntent);
 						}
@@ -253,7 +253,7 @@ public class CardActivity extends Activity {
                             detailsIntent.putExtra("imagesrc", imagesrc);
                             detailsIntent.putExtra("rating", rating);
                             detailsIntent.putExtra("description", description);
-                            detailsIntent.putExtra("location", maplocation);
+                            detailsIntent.putExtra("maplocation", maplocation);
                             detailsIntent.putExtra("id", id);
                             */
 							CardActivity.this.startActivity(detailsIntent);
