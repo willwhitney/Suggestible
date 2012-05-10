@@ -1,5 +1,8 @@
 package suggestcorp.suggestible;
 
+import java.util.List;
+
+import suggestcorp.suggestible.GetServerResponse.Suggestion;
 import uk.co.jasonfry.android.tools.ui.SwipeView.OnPageChangedListener;
 import android.app.Activity;
 import android.content.Intent;
@@ -42,13 +45,15 @@ public class CardActivity extends Activity {
         setContentView(R.layout.card_layout);
         Log.d("Suggestible", "I'm running!");
         
+        
+        List<Suggestion> suggestions = GetServerResponse.getMovies();
+        Toast.makeText(this, "first suggestion name: " + suggestions.get(0).title, Toast.LENGTH_SHORT).show();
+        
         cardmaker = new OnDemandCardmaker();
         swiper = (uk.co.jasonfry.android.tools.ui.SwipeView) findViewById(R.id.flipper);
         filterButtons = new ImageButton[4];
         filters = (LinearLayout) findViewById(R.id.filters);
-        
-//        swiper.setPageWidth(400);
-                
+                        
         for (int i = 0; i < 4; i++) {
         	filterButtons[i] = (ImageButton) filters.getChildAt(i);
         	filterButtons[i].setTag("on");
