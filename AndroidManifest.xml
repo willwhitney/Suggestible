@@ -33,6 +33,11 @@
             android:name="MovieInfoActivity"
             android:theme="@android:style/Theme.NoTitleBar" 
 			android:screenOrientation="portrait">
+			<intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
         </activity>
         <activity
             android:name="PlaceInfoActivity"
@@ -57,11 +62,7 @@
         <activity
             android:name="CardviewActivity"
             android:theme="@android:style/Theme.NoTitleBar" >
-                        <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
+                        
         </activity>
     </application>
 
