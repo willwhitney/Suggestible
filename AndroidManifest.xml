@@ -18,33 +18,41 @@
             android:screenOrientation="portrait"
             android:theme="@android:style/Theme.NoTitleBar" >
         </activity>
+
         <activity
             android:name="BookInfoActivity"
-            android:theme="@android:style/Theme.NoTitleBar" >
+            android:theme="@android:style/Theme.NoTitleBar" 
+			android:screenOrientation="portrait">
         </activity>
         <activity
             android:name="RestaurantInfoActivity"
-            android:theme="@android:style/Theme.NoTitleBar" >
+            android:theme="@android:style/Theme.NoTitleBar" 
+			android:screenOrientation="portrait">
         </activity>
         <activity
             android:name="MovieInfoActivity"
-            android:theme="@android:style/Theme.NoTitleBar" >
+            android:theme="@android:style/Theme.NoTitleBar" 
+			android:screenOrientation="portrait">
         </activity>
         <activity
             android:name="PlaceInfoActivity"
-            android:theme="@android:style/Theme.NoTitleBar" >
+            android:theme="@android:style/Theme.NoTitleBar" 
+			android:screenOrientation="portrait">
         </activity>
         <activity
             android:name="MoreInfoActivity"
-            android:theme="@android:style/Theme.NoTitleBar" >
+            android:theme="@android:style/Theme.NoTitleBar" 
+			android:screenOrientation="portrait">
         </activity>
         <activity
             android:name="About"
-            android:label="@string/about_title" >
+            android:label="@string/about_title" 
+			android:screenOrientation="portrait">
         </activity>
         <activity
             android:name="UndeleteActivity"
-            android:label="@string/delete_title" >
+            android:label="@string/delete_title" 
+			android:screenOrientation="portrait">
         </activity>
         <activity
             android:name="CardviewActivity"
