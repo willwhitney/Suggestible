@@ -62,7 +62,7 @@
                     android:layout_height="fill_parent"
                     android:background="@drawable/button_custom"
                     android:tag="first"
-                    android:text="find it!"
+                    android:text="Find It!"
                     android:textColor="#6d7065"
                     android:textSize="30dp" />
             </LinearLayout>
