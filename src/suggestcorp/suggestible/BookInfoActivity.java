@@ -11,6 +11,16 @@ import android.widget.Button;
 import android.widget.TextView;
 
 public class BookInfoActivity extends Activity {
+    String author = "Herman Melville";
+    String title = "Moby Dick";
+    
+    public void showMore(View view){        
+        ((Button)(findViewById(R.id.bookshowMoreButton))).setVisibility(8);//make it gone
+        ((TextView)(findViewById(R.id.bookdescriptionSmall))).setVisibility(8);//make it gone
+        ((TextView)(findViewById(R.id.bookdescriptionLarge))).setVisibility(2);//make it visible
+        
+    }
+    
 	public void onCreate(Bundle savedInstanceState) {
 		
 		super.onCreate(savedInstanceState);
@@ -35,13 +45,18 @@ public class BookInfoActivity extends Activity {
                 BookInfoActivity.this.startActivity(intent);
             }
         });
+        
+        Button kindleButton = (Button) findViewById(R.id.kindlebutton);
+        kindleButton.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String keyword = title.replace(" ", "+") + "+" + author.replace(" ", "+");
+                String url = "http://www.amazon.com/s/ref=nb_sb_noss?rh=n%3A133140011%2Ck%3A"+keyword+"&keywords="+keyword+"&ie=UTF8";
+                final Intent intent = new Intent(Intent.ACTION_VIEW).setData(Uri.parse(url));
+                BookInfoActivity.this.startActivity(intent);
+            }
+        });
 		
 	}
 	
-	public void showMore(View view){
-		TextView descriptionView = (TextView) findViewById(R.id.bookdescriptionSmall);
-		//LayoutParams params = new LayoutParams(LayoutParams.WRAP_CONTENT,LayoutParams.WRAP_CONTENT);
-		//descriptionView.setLayoutParams(params);
-		descriptionView.setHeight(LayoutParams.WRAP_CONTENT);
-	}
 }

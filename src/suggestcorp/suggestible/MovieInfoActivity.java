@@ -4,6 +4,8 @@ package suggestcorp.suggestible;
 
 import org.w3c.dom.Document;
 
+import com.google.gson.Gson;
+
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
@@ -89,9 +91,9 @@ public class MovieInfoActivity extends Activity {
 	    }
 	 
 	public void showMore(View view){		
-    	((Button)(findViewById(R.id.showMoreButton))).setVisibility(8);//make it gone
-    	((TextView)(findViewById(R.id.descriptionSmall))).setVisibility(8);//make it gone
-    	((TextView)(findViewById(R.id.descriptionLarge))).setVisibility(2);//make it visible
+    	((Button)(findViewById(R.id.movieshowMoreButton))).setVisibility(8);//make it gone
+    	((TextView)(findViewById(R.id.moviedescriptionSmall))).setVisibility(8);//make it gone
+    	((TextView)(findViewById(R.id.moviedescriptionLarge))).setVisibility(2);//make it visible
     	
     }
 	

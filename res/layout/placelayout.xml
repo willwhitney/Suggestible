@@ -1,63 +1,143 @@
 <?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+	    android:layout_width="fill_parent"
+	    android:layout_height="fill_parent"
+	    >
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
     android:orientation="vertical" 
+    android:background="@drawable/rounded_border"
     android:gravity="center_horizontal">
 	
-	<TextView
-        android:layout_width="fill_parent"
+	
+    <TextView
+		android:id="@+id/name"
+		android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:gravity="center_vertical|center_horizontal"
-        android:text="Boston Museum of Art"
+        android:text="Institute of Contemporary Art"
         android:textSize="25sp"
-			/>
-    
-	<ImageView
-        	android:id="@+id/imageView1"
-        	android:layout_width="wrap_content"
-        	android:layout_height="50dip"
-        	android:src="@drawable/starrating" />
+        android:textColor="#6d7065"
+            
+		/>
+		<RelativeLayout 
+		       android:layout_width="fill_parent"
+		       android:layout_height="wrap_content"
+		       android:orientation="horizontal"
+		       >
+		       
+		       <View
+		           android:id="@+id/star1"    
+			       android:layout_width="30dip"
+			       android:layout_height="30dip"
+			       android:layout_toLeftOf="@id/star2"
+			       android:background="@drawable/empty_star"
+			   />
+		       <View
+		           android:id="@+id/star2"    
+			       android:layout_width="30dip"
+			       android:layout_height="30dip"
+			       android:layout_toLeftOf="@id/star3"
+			       android:background="@drawable/empty_star"
+			   />
+
+		       <View
+		           android:id="@+id/star3"   
+			       android:layout_width="30dip"
+			       android:layout_height="30dip"
+			       android:layout_centerInParent="true"
+			       android:background="@drawable/empty_star"
+			   />
+		       <View
+		           android:id="@+id/star4"  
+			       android:layout_width="30dip"
+			       android:layout_height="30dip"
+			       android:layout_toRightOf="@id/star3"
+			       android:background="@drawable/empty_star"
+			   />
+		       <View
+		           android:id="@+id/star5"
+			       android:layout_marginBottom="5dip"    
+			       android:layout_width="30dip"
+			       android:layout_height="30dip"
+			       android:layout_toRightOf="@id/star4"
+			       android:background="@drawable/empty_star"
+			   />
+		       
+		   </RelativeLayout>
+
 
 	<ImageView
-	    android:id="@+id/imageView1"
+	    android:id="@+id/mapview"
+	    android:layout_marginTop="5dip"
 	    android:layout_width="300dip"
-	    android:layout_height="200dip"
-	    android:src="@drawable/maps" />
-
-    
-
+	    android:layout_height="200dip"/>
+	<TextView
+            android:id="@+id/placedescriptionSmall"
+            android:layout_width="fill_parent"
+            android:layout_height="70dip"
+            android:layout_marginLeft="5dip"
+            android:layout_marginRight="5dip"
+            android:layout_marginTop="5dip"
+            android:text="@string/lorem"
+            android:textColor="#000000"
+            android:textSize="16sp" />
+    <RelativeLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical" >
+        <Button
+            android:id="@+id/placeshowMoreButton"
+            android:layout_width="wrap_content"
+            android:layout_height="20dip"
+            android:layout_margin="5dip"
+            android:drawableLeft="@drawable/expand"
+            android:layout_alignParentRight="true"
+            android:textColor="#6d7065"
+            android:background="@null"
+            android:onClick="showMore"
+            android:text="Show More" />
+</RelativeLayout>
+	<TextView
+            android:id="@+id/placedescriptionLarge"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="5dip"
+            android:text="@string/lorem"
+            android:textColor="#000000"
+            android:textSize="16sp"
+            android:visibility="gone" />
+	
     <LinearLayout 
 	        android:layout_width="fill_parent"
 	    	android:layout_height="wrap_content"
 	    	android:orientation="vertical"
-	    	android:layout_marginTop="20dip"
+	    	android:layout_marginTop="10dip"
 	    	android:gravity="center_horizontal|center_vertical">
 
 	        <Button
-	            android:id="@+id/button1"
-	            android:layout_width="250dip"
-	            android:layout_height="50dip"
-	            android:text="Google Maps" 
-	            android:gravity="center_horizontal|center_vertical"/>
-
+	            android:id="@+id/googlemapsbutton"
+	            android:layout_width="200dip"
+                android:layout_height="40dip"
+                android:layout_margin="5dip"
+                android:background="@drawable/button_custom"
+                android:gravity="center_horizontal|center_vertical"
+                android:text="Google Maps" 
+	            android:textColor="#6d7065"
+                android:textSize="20dp" />
+                
 	        <Button
-	            android:id="@+id/button2"
-	            android:layout_width="250dip"
-	            android:layout_height="50dip"
-	            android:text="Yelp" 
-	            android:gravity="center_horizontal|center_vertical"/>
-
+	            android:id="@+id/yelpbutton"
+	            android:layout_width="200dip"
+                android:layout_height="40dip"
+                android:layout_margin="5dip"
+                android:background="@drawable/button_custom"
+                android:gravity="center_horizontal|center_vertical"
+                android:text="Yelp" 
+	            android:textColor="#6d7065"
+                android:textSize="20dp" />
 	        
 	    </LinearLayout>
-    
-	<TextView
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:text="Description" />
-	<TextView
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/lorem" />
-	
 </LinearLayout>
+</ScrollView>
