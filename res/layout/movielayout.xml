@@ -133,7 +133,7 @@
 	        android:layout_marginTop="5dip"      
 	        android:layout_marginRight="5dip"
 	        android:layout_marginLeft="5dip"
-		    android:id = "@+id/descriptionSmall"
+		    android:id = "@+id/moviedescriptionSmall"
 	        android:layout_width="fill_parent"
 	        android:layout_height="160dip"
 			android:textSize="16sp"
@@ -145,7 +145,7 @@
                 android:orientation="vertical" >
        
 		<Button
-            android:id="@+id/showMoreButton"
+            android:id="@+id/movieshowMoreButton"
             android:layout_width="wrap_content"
             android:layout_height="20dip"
             android:layout_margin="5dip"
@@ -158,7 +158,7 @@
 		</RelativeLayout>
 		<TextView
 	        android:layout_margin="5dip"      
-		    android:id = "@+id/descriptionLarge"
+		    android:id = "@+id/moviedescriptionLarge"
 	        android:layout_width="fill_parent"
 	        android:layout_height="wrap_content"
 			android:textSize="16sp"

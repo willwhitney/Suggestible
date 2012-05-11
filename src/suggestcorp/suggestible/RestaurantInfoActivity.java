@@ -16,6 +16,7 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 public class RestaurantInfoActivity extends Activity {
     Double latitude = 42.359013;
@@ -79,5 +80,12 @@ public class RestaurantInfoActivity extends Activity {
             ImageView image = (ImageView) findViewById(R.id.mapview);
             image.setImageDrawable(imgDrawable);
         }
+    }
+    
+    public void showMore(View view){        
+        ((Button)(findViewById(R.id.restaurantshowMoreButton))).setVisibility(8);//make it gone
+        ((TextView)(findViewById(R.id.restaurantdescriptionSmall))).setVisibility(8);//make it gone
+        ((TextView)(findViewById(R.id.restaurantdescriptionLarge))).setVisibility(2);//make it visible
+        
     }
 }
