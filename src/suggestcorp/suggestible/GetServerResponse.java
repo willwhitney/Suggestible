@@ -9,6 +9,8 @@ import java.net.URL;
 import java.net.URLConnection;
 import java.util.List;
 
+import android.util.Log;
+
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
@@ -71,12 +73,12 @@ public class GetServerResponse {
 			URL target = new URL(url);
 		    URLConnection conn = target.openConnection();
 		    BufferedReader in = new BufferedReader(new InputStreamReader(conn.getInputStream()));
+            Log.v("imdb", "reading");
 		    
 		    
 		    String inputLine;
 		    String output = "";
 		    while ((inputLine = in.readLine()) != null) {
-		    	
 		        output += inputLine;
 		        
 		    }
@@ -86,10 +88,12 @@ public class GetServerResponse {
 		    
 		} catch (MalformedURLException e) {
 			// TODO Auto-generated catch block
+		    Log.v("malformedEx", e.getMessage());
 			e.printStackTrace();
 			return null;
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
+		    Log.v("IOEx", e.getLocalizedMessage());
 			e.printStackTrace();
 			return null;
 		}

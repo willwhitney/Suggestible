@@ -108,7 +108,6 @@
             android:layout_margin="5dip"
             android:drawableLeft="@drawable/expand"
             android:layout_alignParentRight="true"
-            android:onClick="showMore"
             android:textColor="#6d7065"
             android:background="@null"
             android:text="Show More" />
