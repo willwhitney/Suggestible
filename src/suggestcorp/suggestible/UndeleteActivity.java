@@ -16,6 +16,7 @@ import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
+import android.widget.TextView;
 
 public class UndeleteActivity extends Activity {
     private ListView mainListView;
@@ -33,9 +34,19 @@ public class UndeleteActivity extends Activity {
 
         SharedPreferences prefs = getPreferences(0);
         int length = prefs.getInt("length", 0);
+        suggestions = new ArrayList<String>();
         for (int i=0; i<length; i++){
             suggestions.add(prefs.getString(""+i, ""));
         }
+        suggestions.add("hello");
+        suggestions.add("goodbye");
+        suggestions.add("suggestion");
+        suggestions.add("hello2");
+        suggestions.add("goodbye2");
+        suggestions.add("suggestion2");
+        suggestions.add("hello3");
+        suggestions.add("goodbye3");
+        suggestions.add("suggestion3");
         
         adapter = new ArrayAdapter<String>(this,
                 android.R.layout.simple_list_item_multiple_choice, suggestions);

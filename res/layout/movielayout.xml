@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
+<<<<<<< HEAD
 	<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
 	    android:layout_width="fill_parent"
 	    android:layout_height="fill_parent"
@@ -15,11 +16,22 @@
 		    android:layout_width="fill_parent"
 		    android:layout_height="200dip"
 		    android:orientation="horizontal" >
-		 <ImageView
-        	android:id="@+id/imageView1"
-        	android:layout_width="150dip"
-        	android:layout_height="200dip"
-        	android:src="@drawable/ironman" />
+		 <RelativeLayout
+                android:layout_width="150dp"
+                android:layout_height="200dp"
+                android:orientation="vertical" >
+
+                <ImageView
+                    android:id="@+id/imageView1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:adjustViewBounds="true"
+                    android:background="@drawable/border"
+                    android:maxHeight="200dp"
+                    android:maxWidth="150dp"
+                    android:scaleType="fitCenter"
+                    android:src="@drawable/ironman" />
+            </RelativeLayout>
 		 <LinearLayout 
 		     android:layout_width="fill_parent"
 		    android:layout_height="200dip"
@@ -119,15 +131,23 @@
 			android:textSize="16sp"
 			android:textColor="#000000"
 			android:text="@string/lorem"/>  
-		<Button 
-		    android:id="@+id/showMoreButton"
-	        android:layout_width="fill_parent"
-	        android:layout_height="20dip"
-	        android:text="Show More" 
-	        android:background="#FFFFFF"
-	        android:layout_margin="5dip"
-	        android:onClick = "showMore"
-	        android:gravity="center_horizontal|center_vertical"/>
+		<RelativeLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical" >
+       
+		<Button
+            android:id="@+id/showMoreButton"
+            android:layout_width="wrap_content"
+            android:layout_height="20dip"
+            android:layout_margin="5dip"
+            android:drawableLeft="@drawable/expand"
+            android:layout_alignParentRight="true"
+            android:textColor="#6d7065"
+            android:background="@null"
+			android:onClick = "showMore"
+            android:text="Show More" />
+		</RelativeLayout>
 		<TextView
 	        android:layout_margin="5dip"      
 		    android:id = "@+id/descriptionLarge"
@@ -138,29 +158,188 @@
 			android:text="@string/lorem" 
 			android:visibility="gone"/>
 	    
-	    <LinearLayout 
-	        android:layout_width="fill_parent"
-	    	android:layout_height="100dip"
-	    	android:orientation="vertical"
-	    	android:gravity="center_horizontal|center_vertical">
+	    <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="100dip"
+            android:gravity="center_horizontal|center_vertical"
+            android:orientation="vertical" >
 
-	        
-	        <Button
-	            android:id="@+id/button2"
-	            android:layout_width="200dip"
-	            android:layout_height="40dip"
-	            android:text="@string/theater" 
-	            android:background="@drawable/rounded_border"
-	            android:layout_margin="5dip"
-	            android:gravity="center_horizontal|center_vertical"/>
-	        <Button
-	            android:id="@+id/button3"
-	            android:layout_width="200dip"
-	            android:layout_height="40dip"
-	            android:text="@string/imdb" 
-	            android:background="@drawable/rounded_border"
-	            android:layout_margin="5dip"
-	            android:gravity="center_horizontal|center_vertical"/>
-	    </LinearLayout>
+            <Button
+                android:id="@+id/theaterbutton"
+                android:layout_width="200dip"
+                android:layout_height="40dip"
+                android:layout_margin="5dip"
+                android:background="@drawable/button_custom"
+                android:gravity="center_horizontal|center_vertical"
+                android:text="@string/theater"
+                android:textColor="#6d7065"
+                android:textSize="20dp" />
+
+            <Button
+                android:id="@+id/imdbbutton"
+                android:layout_width="200dip"
+                android:layout_height="40dip"
+                android:layout_margin="5dip"
+                android:background="@drawable/button_custom"
+                android:gravity="center_horizontal|center_vertical"
+                android:text="@string/imdb"
+                android:textColor="#6d7065"
+                android:textSize="20dp" />
+        </LinearLayout>
 	</LinearLayout>
+=======
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent" >
+
+    <LinearLayout
+        android:id="@+id/infolayout"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/rounded_border"
+        android:orientation="vertical" >
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="200dip"
+            android:orientation="horizontal" >
+
+            <RelativeLayout
+                android:layout_width="150dp"
+                android:layout_height="200dp"
+                android:orientation="vertical" >
+
+                <ImageView
+                    android:id="@+id/imageView1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:adjustViewBounds="true"
+                    android:background="@drawable/border"
+                    android:maxHeight="200dp"
+                    android:maxWidth="150dp"
+                    android:scaleType="fitCenter"
+                    android:src="@drawable/ironman" />
+            </RelativeLayout>
+
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="200dip"
+                android:orientation="vertical" >
+
+                <TextView
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dip"
+                    android:text="MPAA Rating"
+                    android:textColor="#000000"
+                    android:textSize="20sp" />
+
+                <TextView
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="5dip"
+                    android:text="PG-13"
+                    android:textColor="#000000"
+                    android:textSize="18sp" />
+
+                <TextView
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dip"
+                    android:text="Runtime"
+                    android:textColor="#000000"
+                    android:textSize="20sp" />
+
+                <TextView
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="5dip"
+                    android:text="142 min"
+                    android:textColor="#000000"
+                    android:textSize="18sp" />
+
+                <TextView
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dip"
+                    android:text="Rating"
+                    android:textColor="#000000"
+                    android:textSize="20sp" />
+
+                <TextView
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="5dip"
+                    android:text="Stars Go Here"
+                    android:textColor="#000000"
+                    android:textSize="18sp" />
+            </LinearLayout>
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/descriptionSmall"
+            android:layout_width="fill_parent"
+            android:layout_height="160dip"
+            android:layout_marginLeft="5dip"
+            android:layout_marginRight="5dip"
+            android:layout_marginTop="5dip"
+            android:text="@string/lorem"
+            android:textColor="#000000"
+            android:textSize="16sp" />
+<RelativeLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical" >
+        <Button
+            android:id="@+id/showMoreButton"
+            android:layout_width="wrap_content"
+            android:layout_height="20dip"
+            android:layout_margin="5dip"
+            android:drawableLeft="@drawable/expand"
+            android:layout_alignParentRight="true"
+            android:textColor="#6d7065"
+            android:background="@null"
+            android:text="Show More" />
+</RelativeLayout>
+        <TextView
+            android:id="@+id/descriptionLarge"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="5dip"
+            android:text="@string/lorem"
+            android:textColor="#000000"
+            android:textSize="16sp"
+            android:visibility="gone" />
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="100dip"
+            android:gravity="center_horizontal|center_vertical"
+            android:orientation="vertical" >
+
+            <Button
+                android:id="@+id/theaterbutton"
+                android:layout_width="200dip"
+                android:layout_height="40dip"
+                android:layout_margin="5dip"
+                android:background="@drawable/button_custom"
+                android:gravity="center_horizontal|center_vertical"
+                android:text="@string/theater"
+                android:textColor="#6d7065"
+                android:textSize="20dp" />
+
+            <Button
+                android:id="@+id/imdbbutton"
+                android:layout_width="200dip"
+                android:layout_height="40dip"
+                android:layout_margin="5dip"
+                android:background="@drawable/button_custom"
+                android:gravity="center_horizontal|center_vertical"
+                android:text="@string/imdb"
+                android:textColor="#6d7065"
+                android:textSize="20dp" />
+        </LinearLayout>
+    </LinearLayout>
+
+>>>>>>> 67979c35e25a27664650b6c743772ada095b2214
 </ScrollView>

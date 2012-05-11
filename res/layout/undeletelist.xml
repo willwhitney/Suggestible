@@ -1,26 +1,32 @@
 <?xml version="1.0" encoding="utf-8"?>
-  <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-      android:orientation="vertical"
-      android:layout_width="fill_parent"
-      android:layout_height="fill_parent"
-      android:background="#000000"
-  >
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="#636351"
+    android:orientation="vertical" >
 
-    <ListView android:id="@+id/UndeleteListView" 
-      android:layout_width="fill_parent" 
-      android:layout_height="wrap_content" 
-      android:layout_weight="1">
+    <ListView
+        android:id="@+id/UndeleteListView"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1">
     </ListView>
 
-    <FrameLayout android:id="@+id/FrameLayout01" 
-      android:layout_width="fill_parent" 
-      android:layout_height="wrap_content">
-         <Button android:id="@+id/UndeleteButton" 
-              android:layout_width="fill_parent" 
-              android:layout_height="wrap_content" 
-              android:text="I like these again!" 
-              android:layout_gravity="center_horizontal">
+    <FrameLayout
+        android:id="@+id/FrameLayout01"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content" >
+
+        <Button
+            android:id="@+id/UndeleteButton"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:background="@drawable/button_custom"
+            android:text="I like these again!"
+            android:textColor="#6d7065"
+            android:textSize="20dp" >
         </Button>
     </FrameLayout>
 
-  </LinearLayout>
+</LinearLayout>
