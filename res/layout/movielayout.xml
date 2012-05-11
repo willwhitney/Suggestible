@@ -106,11 +106,11 @@
             android:layout_width="wrap_content"
             android:layout_height="20dip"
             android:layout_margin="5dip"
-            android:background="#FFFFFF"
             android:drawableLeft="@drawable/expand"
             android:layout_alignParentRight="true"
             android:onClick="showMore"
             android:textColor="#6d7065"
+            android:background="@null"
             android:text="Show More" />
 </RelativeLayout>
         <TextView
@@ -130,7 +130,7 @@
             android:orientation="vertical" >
 
             <Button
-                android:id="@+id/button2"
+                android:id="@+id/theaterbutton"
                 android:layout_width="200dip"
                 android:layout_height="40dip"
                 android:layout_margin="5dip"
@@ -141,7 +141,7 @@
                 android:textSize="20dp" />
 
             <Button
-                android:id="@+id/button3"
+                android:id="@+id/imdbbutton"
                 android:layout_width="200dip"
                 android:layout_height="40dip"
                 android:layout_margin="5dip"
