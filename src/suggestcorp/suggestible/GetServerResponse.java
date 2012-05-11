@@ -39,8 +39,6 @@ public class GetServerResponse {
     	Type collectionType = new TypeToken<List<Suggestion>>(){}.getType();
     	List<Suggestion> suggestions = gson.fromJson(json, collectionType);
     	
-    	
-    	
     	return suggestions;
     }
     

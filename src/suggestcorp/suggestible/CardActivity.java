@@ -1,6 +1,10 @@
 package suggestcorp.suggestible;
 
+import java.io.InputStream;
+import java.net.URL;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 import suggestcorp.suggestible.GetServerResponse.Suggestion;
 import uk.co.jasonfry.android.tools.ui.SwipeView.OnPageChangedListener;
@@ -9,6 +13,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.Typeface;
+import android.graphics.drawable.Drawable;
 import android.location.Location;
 import android.location.LocationManager;
 import android.os.AsyncTask;
@@ -22,6 +27,7 @@ import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.LinearLayout.LayoutParams;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -34,7 +40,7 @@ public class CardActivity extends Activity {
 	RelativeLayout card1;
 	uk.co.jasonfry.android.tools.ui.SwipeView swiper;
 	OnDemandCardmaker cardmaker;
-	final int MAX_PAGES = 8;
+	final int MAX_PAGES = 100;
 	int remainingPages = MAX_PAGES;
 	ImageButton[] filterButtons;
 	LinearLayout filters;
@@ -42,6 +48,13 @@ public class CardActivity extends Activity {
 	List<Suggestion> books;
 	List<Suggestion> restaurants;
 	List<Suggestion> outings;
+	List<Drawable> imagesToLoad;
+	List<Integer> cardsNeedingImages;
+	int fetchedCount = 0;
+	
+	public enum CardType {
+		movie, book, restaurant, outing
+	}
 		
 	
 	private class MovieFetcher extends AsyncTask<Void, Void, List<Suggestion>> {
@@ -52,6 +65,10 @@ public class CardActivity extends Activity {
 		@Override
 		protected void onPostExecute(List<Suggestion> suggestions) {
 			movies = suggestions;
+			fetchedCount++;
+			if (fetchedCount >3) {
+				cardmaker.onPageChanged(-1, 0);
+			}
 		}
 	}
 	
@@ -63,6 +80,11 @@ public class CardActivity extends Activity {
 		@Override
 		protected void onPostExecute(List<Suggestion> suggestions) {
 			books = suggestions;
+			fetchedCount++;
+			if (fetchedCount >3) {
+				cardmaker.onPageChanged(-1, 0);
+			}
+			//Log.d("Suggestible", "first cardType: " + cardType.values()[1]);
 		}
 	}
 	
@@ -74,6 +96,10 @@ public class CardActivity extends Activity {
 		@Override
 		protected void onPostExecute(List<Suggestion> suggestions) {
 			restaurants = suggestions;
+			fetchedCount++;
+			if (fetchedCount >3) {
+				cardmaker.onPageChanged(-1, 0);
+			}
 		}
 	}
 	
@@ -85,10 +111,39 @@ public class CardActivity extends Activity {
 		@Override
 		protected void onPostExecute(List<Suggestion> suggestions) {
 			outings = suggestions;
-			cardmaker.onPageChanged(-1, 0);
+			fetchedCount++;
+			if (fetchedCount >3) {
+				cardmaker.onPageChanged(-1, 0);
+			}
+			//Log.d("Suggestible", outings.get(0).title);
 		}
 	}
-
+	
+	private class DrawableFetcher extends AsyncTask<String, Void, Drawable> {
+		
+		int cardnum;
+		@Override
+		protected Drawable doInBackground(String... params) {
+			
+			cardnum = Integer.parseInt(params[1]);
+			try {
+	            InputStream is = (InputStream) new URL(params[0]).getContent();
+	            Drawable d = Drawable.createFromStream(is, "src name");
+	            return d;
+	        } catch (Exception e) {
+	        	Log.e("Suggestible", "Could not load image at " + params[0]);
+	        	e.printStackTrace();
+	            return null;
+	        }
+		}
+		
+		@Override
+		protected void onPostExecute(Drawable imgDrawable) {
+			imagesToLoad.add(imgDrawable);
+			getImageViewByPageNum(cardnum).setImageDrawable(imgDrawable);
+		}
+	}
+	
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -96,6 +151,10 @@ public class CardActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.card_layout);
         Log.d("Suggestible", "I'm running!");
+        
+        imagesToLoad = new ArrayList<Drawable>();
+        cardsNeedingImages = new ArrayList<Integer>();
+
         
         locManager = (LocationManager) this.getSystemService(Context.LOCATION_SERVICE);
         location = locManager.getLastKnownLocation(LocationManager.NETWORK_PROVIDER);
@@ -121,11 +180,9 @@ public class CardActivity extends Activity {
 					} else {
 						v.setTag("on");
 					}
-					
 					updateFilters();
-					
 				}
-        		
+				
         	});
         }
         
@@ -144,11 +201,21 @@ public class CardActivity extends Activity {
 			if (newpage > oldpage) {
 								
 				if (newpage == 0) {
-					int textToSet = getResources().getIdentifier("card" + newpage, "string", "suggestcorp.suggestible");
-					getTextViewByPageNum(newpage).setText(textToSet);
+					Suggestion movie = movies.remove(0);
 					
-					int imageToSet = getResources().getIdentifier("card" + newpage, "drawable", "suggestcorp.suggestible");
-					getImageViewByPageNum(newpage).setImageResource(imageToSet);
+					getCardByPageNum(newpage).setTag("movie");
+					String textToSet = movie.title;      //getResources().getIdentifier("card" + newpage, "string", "suggestcorp.suggestible");
+					getTextViewByPageNum(newpage).setText(textToSet);
+
+					
+					Log.d("Suggestible", "Trying to load image " + movie.imageurl);
+					
+					cardsNeedingImages.add(newpage);
+					new DrawableFetcher().execute(movie.imageurl, Integer.toString(newpage));
+					getImageViewByPageNum(newpage).setScaleType(ImageView.ScaleType.FIT_XY);
+					getImageViewByPageNum(newpage).setLayoutParams(new LayoutParams(250, 400));
+					//Drawable imageToSet = LoadImageFromWeb(movies.get(newpage).imageurl);           //getResources().getIdentifier("card" + newpage, "drawable", "suggestcorp.suggestible");
+					//getImageViewByPageNum(newpage).setImageDrawable(imageToSet);
 					
 					
 					
@@ -209,15 +276,11 @@ public class CardActivity extends Activity {
 							
 						}
 					});
+					addCard();
 				}
 				
 				addCard();
 				fixFonts();
-				
-				
-
-				
-				
 				
 				// THIS IS HOW YOU ASSIGN STRINGS AS IDs
 				// http://stackoverflow.com/questions/3937010/array-of-imagebuttons-assign-r-view-id-from-a-variable
@@ -229,17 +292,68 @@ public class CardActivity extends Activity {
 			
 		}
 		
+		private int pickCardType() {
+			Random rand = new Random();
+			int i = rand.nextInt(4);
+			while(filterButtons[i].getTag() != "on") {
+				i = rand.nextInt(4);
+			}
+			return i;
+		}
+		
 		public void addCard() {
 			if (swiper.getPageCount() < remainingPages) {
+				
+				int cardNum = swiper.getPageCount();
 				View newCard = new View(CardActivity.this);
 				newCard.inflate(CardActivity.this, R.layout.card, (ViewGroup) swiper);
 				
+				Suggestion card = movies.get(0);
+				String tag = "";
+				int currentCardType = pickCardType();
+				switch(currentCardType) {
+				case 0:
+					card = outings.remove(0);
+					tag = "outing";
+					break;
+				case 1:
+					card = books.remove(0);
+					tag = "book";
+					getImageViewByPageNum(cardNum).setScaleType(ImageView.ScaleType.FIT_XY);
+					break;
+				case 2:
+					card = movies.remove(0);
+					tag = "movie";
+					getImageViewByPageNum(cardNum).setScaleType(ImageView.ScaleType.FIT_XY);
+					getImageViewByPageNum(cardNum).setLayoutParams(new LayoutParams(250, 400));
+					break;
+				case 3:
+					card = restaurants.remove(0);
+					tag = "restaurant";
+					break;
+				}
 				
-				int textToSet = getResources().getIdentifier("card" + (swiper.getPageCount() - 1 + (MAX_PAGES - remainingPages)), "string", "suggestcorp.suggestible");
-				getTextViewByPageNum(swiper.getPageCount() - 1).setText(textToSet);
+				getCardByPageNum(cardNum).setTag(tag);
+				String textToSet = card.title;      //getResources().getIdentifier("card" + newpage, "string", "suggestcorp.suggestible");
+				getTextViewByPageNum(cardNum).setText(textToSet);
+
 				
-				int imageToSet = getResources().getIdentifier("card" + (swiper.getPageCount() - 1 + (MAX_PAGES - remainingPages)), "drawable", "suggestcorp.suggestible");
-				getImageViewByPageNum(swiper.getPageCount() - 1).setImageResource(imageToSet);
+				Log.d("Suggestible", "Trying to load image " + card.imageurl);
+				
+				cardsNeedingImages.add(cardNum);
+				new DrawableFetcher().execute(card.imageurl, Integer.toString(cardNum));
+				
+				
+//				String textToSet = movies.get(cardNum).title;
+//				getTextViewByPageNum(cardNum).setText(textToSet);
+//				
+//				
+//				Log.d("Suggestible", "Trying to load image " + movies.get(cardNum).imageurl);
+//				
+//				cardsNeedingImages.add(cardNum);
+//				new DrawableFetcher().execute(movies.get(cardNum).imageurl, Integer.toString(cardNum));
+
+				
 				
 				if (swiper.getPageCount() - 1  + (MAX_PAGES - remainingPages) % 4 == 0) {
 					getCardButtonsByPageNum(swiper.getPageCount() - 1)[0].setOnClickListener(new OnClickListener() {
@@ -318,8 +432,9 @@ public class CardActivity extends Activity {
 				});
 
 			}
+			
+//			addCard();
 		}
-    	
     }
     
     @Override
@@ -332,9 +447,11 @@ public class CardActivity extends Activity {
         return super.onKeyDown(keyCode, event);
     }
     
-    public void updateFilters() {
+    public int updateFilters() {
+    	int active = 0;
     	for (int i = 0; i < 4; i++) {
     		if (filterButtons[i].getTag().equals("on")) {
+    			active ++;
     			filterButtons[i].setBackgroundColor(Color.parseColor("#F3F377"));
 //    			switch(i) {
 //    				case 0:
@@ -368,6 +485,7 @@ public class CardActivity extends Activity {
 //    			}
     		}
         } 
+    	return active;
     }
     
     

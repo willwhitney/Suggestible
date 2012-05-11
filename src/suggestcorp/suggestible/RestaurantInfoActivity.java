@@ -35,7 +35,7 @@ public class RestaurantInfoActivity extends Activity {
                 + "&markers=color:green%7Clabel:B%7C" + urlLocation;
         new MapFetcher().execute(url);
 
-        Button googleButton = (Button) findViewById(R.id.googlebutton);
+        Button googleButton = (Button) findViewById(R.id.googlemapsbutton);
         googleButton.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
