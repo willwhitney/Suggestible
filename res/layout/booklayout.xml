@@ -47,6 +47,7 @@
                     android:textSize="22sp" />
 
                 <TextView
+                    android:id="@+id/txttitle"
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="5dip"
@@ -64,6 +65,7 @@
                     android:textSize="22sp" />
 
                 <TextView
+                    android:id="@+id/txtauthor"
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="5dip"

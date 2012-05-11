@@ -25,7 +25,26 @@ public class PlaceInfoActivity extends Activity {
 	public void onCreate(Bundle savedInstanceState) {
 		
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.placelayout);String urlLocation = URLEncoder.encode(location);
+		setContentView(R.layout.placelayout);
+		
+		/*
+        String name = getIntent().getStringExtra("name");
+        ((TextView) findViewById(R.id.name)).setText(name);
+        
+        Double rating = getIntent().getDoubleExtra("rating",0.0);
+        fillStars(rating);
+        
+ 
+        String description = getIntent().getStringExtra("description");
+        ((TextView) findViewById(R.id.descriptionLarge)).setText(description);
+        ((TextView) findViewById(R.id.descriptionSmall)).setText(description);
+        
+        location = getIntent().getStringExtra("location");
+        latitude = getIntent().getDoubleExtra("latitude"):
+        longitude = getInent().getDoubleExtra("longitude):
+        */
+		
+		String urlLocation = URLEncoder.encode(location);
         String url = "http://maps.google.com/maps/api/staticmap?size=250x200&maptype=roadmap&sensor=false&markers=color:green%7Clabel:A%7C"
                 + latitude
                 + ","
@@ -54,7 +73,8 @@ public class PlaceInfoActivity extends Activity {
                 PlaceInfoActivity.this.startActivity(intent);
             }
         });
-
+        
+        
     }
 	
 	private class MapFetcher extends AsyncTask<String, Void, Drawable> {
@@ -85,5 +105,41 @@ public class PlaceInfoActivity extends Activity {
         ((TextView)(findViewById(R.id.placedescriptionLarge))).setVisibility(2);//make it visible
         
     }
+	
+	public void fillStars(double rating){
+		double stars = rating/20.00;
+		if (stars >= 1){
+			((View)(findViewById(R.id.star1))).setBackgroundResource(R.drawable.full_star);
+		}
+		else if(stars >=.5){
+			((View)(findViewById(R.id.star1))).setBackgroundResource(R.drawable.half_star);
+		}
+
+		if (stars >= 2){
+			((View)(findViewById(R.id.star2))).setBackgroundResource(R.drawable.full_star);
+		}
+		else if(stars >=1.5){
+			((View)(findViewById(R.id.star2))).setBackgroundResource(R.drawable.half_star);
+		}
+		if (stars >= 3){
+			((View)(findViewById(R.id.star3))).setBackgroundResource(R.drawable.full_star);
+		}
+		else if(stars >=2.5){
+			((View)(findViewById(R.id.star3))).setBackgroundResource(R.drawable.half_star);
+		}
+		if (stars >= 4){
+			((View)(findViewById(R.id.star4))).setBackgroundResource(R.drawable.full_star);
+		}
+		else if(stars >=3.5){
+			((View)(findViewById(R.id.star4))).setBackgroundResource(R.drawable.full_star);
+		}
+		if (stars >= 5){
+			((View)(findViewById(R.id.star5))).setBackgroundResource(R.drawable.full_star);
+		}
+		else if(stars >=4.5){
+			((View)(findViewById(R.id.star5))).setBackgroundResource(R.drawable.full_star);
+		}
+		
+	}
 
 }

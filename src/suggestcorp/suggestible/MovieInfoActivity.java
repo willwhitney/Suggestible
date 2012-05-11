@@ -61,7 +61,7 @@ public class MovieInfoActivity extends Activity {
 	        
 	        /*
 	        String title = getIntent().getStringExtra("title");
-	        ((TextView) findViewById(R.id.txtmpaa)).setText(title);
+	        ((TextView) findViewById(R.id.txttitle)).setText(title);
 	        
 	        String mpaa = getIntent().getStringExtra("mpaa");
 	        ((TextView) findViewById(R.id.txtmpaa)).setText(mpaa);
@@ -73,8 +73,8 @@ public class MovieInfoActivity extends Activity {
 	        ((TextView) findViewById(R.id.txttime)).setText(runtime + " min");
 	        
 	        String description = getIntent().getStringExtra("description");
-	        ((TextView) findViewById(R.id.descriptionLarge)).setText(mpaa);
-	        ((TextView) findViewById(R.id.descriptionSmall)).setText(mpaa);
+	        ((TextView) findViewById(R.id.descriptionLarge)).setText(description);
+	        ((TextView) findViewById(R.id.descriptionSmall)).setText(description);
 	        */
 	        
 	        /* not functional at moment

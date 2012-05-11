@@ -57,6 +57,53 @@ public class BookInfoActivity extends Activity {
             }
         });
 		
+        /*
+        String title = getIntent().getStringExtra("title");
+        ((TextView) findViewById(R.id.txtmpaa)).setText(title);
+        
+        String author = getIntent().getStringExtra("author");
+        ((TextView) findViewById(R.id.txtauthor)).setText(author);
+        
+        String description = getIntent().getStringExtra("description");
+        ((TextView) findViewById(R.id.descriptionLarge)).setText(description);
+        ((TextView) findViewById(R.id.descriptionSmall)).setText(description);
+        */
+	}
+	
+	public void fillStars(double rating){
+		double stars = rating/20.00;
+		if (stars >= 1){
+			((View)(findViewById(R.id.star1))).setBackgroundResource(R.drawable.full_star);
+		}
+		else if(stars >=.5){
+			((View)(findViewById(R.id.star1))).setBackgroundResource(R.drawable.half_star);
+		}
+
+		if (stars >= 2){
+			((View)(findViewById(R.id.star2))).setBackgroundResource(R.drawable.full_star);
+		}
+		else if(stars >=1.5){
+			((View)(findViewById(R.id.star2))).setBackgroundResource(R.drawable.half_star);
+		}
+		if (stars >= 3){
+			((View)(findViewById(R.id.star3))).setBackgroundResource(R.drawable.full_star);
+		}
+		else if(stars >=2.5){
+			((View)(findViewById(R.id.star3))).setBackgroundResource(R.drawable.half_star);
+		}
+		if (stars >= 4){
+			((View)(findViewById(R.id.star4))).setBackgroundResource(R.drawable.full_star);
+		}
+		else if(stars >=3.5){
+			((View)(findViewById(R.id.star4))).setBackgroundResource(R.drawable.full_star);
+		}
+		if (stars >= 5){
+			((View)(findViewById(R.id.star5))).setBackgroundResource(R.drawable.full_star);
+		}
+		else if(stars >=4.5){
+			((View)(findViewById(R.id.star5))).setBackgroundResource(R.drawable.full_star);
+		}
+		
 	}
 	
 }
