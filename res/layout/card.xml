@@ -20,7 +20,7 @@
 			    android:layout_width="fill_parent" 
 			    android:layout_height="200dp"
 			    android:textColor="#000000"
-			    android:text=""
+			    android:text="Loading..."
 			    android:textSize="30sp"
 			    android:gravity="center_vertical"
 			    android:padding="10px"
@@ -28,10 +28,10 @@
 			    android:layout_weight="1"
 			/>
 			<ImageView 
-			    android:layout_width="wrap_content"
 			    android:layout_height="275dp"
+			    android:layout_width="wrap_content"
 			    android:paddingBottom="15dp"
-			    android:scaleType="centerInside"
+			    android:scaleType="centerCrop"
 			/>
 			<LinearLayout 
 			    android:orientation="horizontal"
