@@ -9,6 +9,9 @@ import java.net.URL;
 import java.net.URLConnection;
 import java.util.List;
 
+import android.content.Context;
+import android.util.Log;
+
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
@@ -65,7 +68,8 @@ public class GetServerResponse {
     
  
     public static String getURLContents(String url) {
-        
+    	Log.d("Suggestible", "I AM A THING LOOK AT ME NOW");
+    	Log.d("Suggestible", url);
 		try {
 			
 			URL target = new URL(url);
@@ -81,6 +85,8 @@ public class GetServerResponse {
 		        
 		    }
 		    in.close();
+		    
+		    Log.d("Suggestible", "I GOT SOME SHIT: " + output);
 		    
 		    return output;
 		    

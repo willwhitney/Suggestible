@@ -10,6 +10,7 @@ import android.graphics.Color;
 import android.graphics.Typeface;
 import android.location.Location;
 import android.location.LocationManager;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.KeyEvent;
@@ -37,6 +38,22 @@ public class CardActivity extends Activity {
 	ImageButton[] filterButtons;
 	LinearLayout filters;
 	
+	private class MovieFetcher extends AsyncTask<Void, Void, List<Suggestion>> {
+
+		@Override
+		protected List<Suggestion> doInBackground(Void... params) {
+			// TODO Auto-generated method stub
+			return GetServerResponse.getMovies();
+		}
+		
+		@Override
+		protected void onPostExecute(List<Suggestion> suggestions) {
+			Toast.makeText(CardActivity.this, "first suggestion name: " + suggestions.get(0).title, Toast.LENGTH_SHORT).show();
+		}
+		
+		
+	}
+	
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -45,9 +62,8 @@ public class CardActivity extends Activity {
         setContentView(R.layout.card_layout);
         Log.d("Suggestible", "I'm running!");
         
+        new MovieFetcher().execute();
         
-        List<Suggestion> suggestions = GetServerResponse.getMovies();
-        Toast.makeText(this, "first suggestion name: " + suggestions.get(0).title, Toast.LENGTH_SHORT).show();
         
         cardmaker = new OnDemandCardmaker();
         swiper = (uk.co.jasonfry.android.tools.ui.SwipeView) findViewById(R.id.flipper);
