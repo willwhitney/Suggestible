@@ -123,10 +123,10 @@ public class MovieInfoActivity extends Activity {
 			((View)(findViewById(R.id.star4))).setBackgroundResource(R.drawable.full_star);
 		}
 		if (stars >= 5){
-			((View)(findViewById(R.id.star4))).setBackgroundResource(R.drawable.full_star);
+			((View)(findViewById(R.id.star5))).setBackgroundResource(R.drawable.full_star);
 		}
 		else if(stars >=4.5){
-			((View)(findViewById(R.id.star4))).setBackgroundResource(R.drawable.full_star);
+			((View)(findViewById(R.id.star5))).setBackgroundResource(R.drawable.full_star);
 		}
 		
 	}
