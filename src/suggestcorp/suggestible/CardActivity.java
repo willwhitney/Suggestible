@@ -5,6 +5,7 @@ import java.util.List;
 import suggestcorp.suggestible.GetServerResponse.Suggestion;
 import uk.co.jasonfry.android.tools.ui.SwipeView.OnPageChangedListener;
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.Typeface;
@@ -37,23 +38,57 @@ public class CardActivity extends Activity {
 	int remainingPages = MAX_PAGES;
 	ImageButton[] filterButtons;
 	LinearLayout filters;
+	List<Suggestion> movies;
+	List<Suggestion> books;
+	List<Suggestion> restaurants;
+	List<Suggestion> outings;
+		
 	
 	private class MovieFetcher extends AsyncTask<Void, Void, List<Suggestion>> {
-
 		@Override
 		protected List<Suggestion> doInBackground(Void... params) {
-			// TODO Auto-generated method stub
 			return GetServerResponse.getMovies();
 		}
-		
 		@Override
 		protected void onPostExecute(List<Suggestion> suggestions) {
-			Toast.makeText(CardActivity.this, "first suggestion name: " + suggestions.get(0).title, Toast.LENGTH_SHORT).show();
+			movies = suggestions;
 		}
-		
-		
 	}
 	
+	private class BookFetcher extends AsyncTask<Void, Void, List<Suggestion>> {
+		@Override
+		protected List<Suggestion> doInBackground(Void... params) {
+			return GetServerResponse.getBooks();
+		}
+		@Override
+		protected void onPostExecute(List<Suggestion> suggestions) {
+			books = suggestions;
+		}
+	}
+	
+	private class RestaurantFetcher extends AsyncTask<Double, Void, List<Suggestion>> {
+		@Override
+		protected List<Suggestion> doInBackground(Double... location) {
+			return GetServerResponse.getRestaurants(location[0], location[1]);
+		}
+		@Override
+		protected void onPostExecute(List<Suggestion> suggestions) {
+			restaurants = suggestions;
+		}
+	}
+	
+	private class OutingFetcher extends AsyncTask<Double, Void, List<Suggestion>> {
+		@Override
+		protected List<Suggestion> doInBackground(Double... location) {
+			return GetServerResponse.getOutings(location[0], location[1]);
+		}
+		@Override
+		protected void onPostExecute(List<Suggestion> suggestions) {
+			outings = suggestions;
+			cardmaker.onPageChanged(-1, 0);
+		}
+	}
+
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -62,8 +97,13 @@ public class CardActivity extends Activity {
         setContentView(R.layout.card_layout);
         Log.d("Suggestible", "I'm running!");
         
-        new MovieFetcher().execute();
+        locManager = (LocationManager) this.getSystemService(Context.LOCATION_SERVICE);
+        location = locManager.getLastKnownLocation(LocationManager.NETWORK_PROVIDER);
         
+        new MovieFetcher().execute();
+        new BookFetcher().execute();
+        new RestaurantFetcher().execute(location.getLatitude(), location.getLongitude());
+        new OutingFetcher().execute(location.getLatitude(), location.getLongitude());
         
         cardmaker = new OnDemandCardmaker();
         swiper = (uk.co.jasonfry.android.tools.ui.SwipeView) findViewById(R.id.flipper);
@@ -89,27 +129,11 @@ public class CardActivity extends Activity {
         	});
         }
         
-        updateFilters();
-        
-        
-//        int textToSet = getResources().getIdentifier("card" + 0, "string", "suggestcorp.suggestible");
-//		getTextViewByPageNum(0).setText(textToSet);
-//		
-//		int imageToSet = getResources().getIdentifier("card" + 0, "drawable", "suggestcorp.suggestible");
-//		getImageViewByPageNum(0).setImageResource(imageToSet);
-
-        
-//        card1 = (RelativeLayout) findViewById(R.id.card1);
-//        RelativeLayout card2 = (RelativeLayout) findViewById(R.id.card2);
-//        Toast.makeText(this, "index 1: " + ((ViewGroup) ((ViewGroup) ((ViewGroup) swiper.getChildAt(0)).getChildAt(0)).getChildAt(0)).getChildAt(0).getClass(), Toast.LENGTH_SHORT).show();
-        //Toast.makeText(this, "card2 index: " + swiper.indexOfChild(card2), Toast.LENGTH_SHORT).show();
-        
+        updateFilters();        
         
         fixFonts();
 		
 		swiper.setOnPageChangedListener(cardmaker);
-        
-		cardmaker.onPageChanged(-1, 0);
 
     }
     
@@ -176,8 +200,6 @@ public class CardActivity extends Activity {
 					}
 					
 					
-					
-					
 					getCardButtonsByPageNum(newpage)[1].setOnClickListener(new OnClickListener() {
 	
 						public void onClick(View v) {
@@ -186,28 +208,10 @@ public class CardActivity extends Activity {
 							addCard();
 							
 						}
-						
 					});
-				
 				}
 				
 				addCard();
-
-//				if (swiper.getPageCount() < MAX_PAGES) {
-//					View newCard = new View(CardActivity.this);
-//					newCard.inflate(CardActivity.this, R.layout.card, (ViewGroup) swiper);
-//					
-//					int textToSet2 = getResources().getIdentifier("card" + (swiper.getPageCount() - 1), "string", "suggestcorp.suggestible");
-//					getTextViewByPageNum(swiper.getPageCount() - 1).setText(textToSet2);
-//					
-//					int imageToSet2 = getResources().getIdentifier("card" + (swiper.getPageCount() - 1), "drawable", "suggestcorp.suggestible");
-//					getImageViewByPageNum(swiper.getPageCount() - 1).setImageResource(imageToSet2);
-//
-//				}
-				
-				
-				
-
 				fixFonts();
 				
 				

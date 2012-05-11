@@ -55,8 +55,19 @@ public class GetServerResponse {
     	return suggestions;
     }
     
-    public static List<Suggestion> getRestaurants(float lat, float lon) {
+    public static List<Suggestion> getRestaurants(double lat, double lon) {
     	String url = "http://afternoon-planet-7936.herokuapp.com/restaurants?lat=" + lat + "&lon=" + lon;
+    	String json = getURLContents(url);
+    	
+    	Gson gson = new Gson();
+    	Type collectionType = new TypeToken<List<Suggestion>>(){}.getType();
+    	List<Suggestion> suggestions = gson.fromJson(json, collectionType);
+    	
+    	return suggestions;
+    }
+    
+    public static List<Suggestion> getOutings(double lat, double lon) {
+    	String url = "http://afternoon-planet-7936.herokuapp.com/outings?lat=" + lat + "&lon=" + lon;
     	String json = getURLContents(url);
     	
     	Gson gson = new Gson();

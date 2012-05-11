@@ -70,10 +70,6 @@
         <activity
             android:name="CardviewActivity"
             android:theme="@android:style/Theme.NoTitleBar" >
-<<<<<<< HEAD
-                        
-=======
->>>>>>> c6585e094ce40ef48a71efa90891275a6347c281
         </activity>
     </application>
 
