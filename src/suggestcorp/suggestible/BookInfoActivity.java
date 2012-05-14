@@ -65,7 +65,7 @@ public class BookInfoActivity extends Activity {
         });
 		
         
-        String title = getIntent().getStringExtra("title");
+        title = getIntent().getStringExtra("title");
         if (title != null)
         	((TextView) findViewById(R.id.txttitle)).setText(title);
         
@@ -73,7 +73,7 @@ public class BookInfoActivity extends Activity {
         if (imagesrc != null)
             new ImageFetcher().execute(imagesrc);
         
-        String author = getIntent().getStringExtra("author");
+        author = getIntent().getStringExtra("author");
         if (author != null)
             ((TextView) findViewById(R.id.txtauthor)).setText(author);
         

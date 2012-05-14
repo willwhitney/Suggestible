@@ -74,7 +74,7 @@ public class MovieInfoActivity extends Activity {
 	        
 	        String title = getIntent().getStringExtra("title");
 	        if (title != null)
-	        	((TextView) findViewById(R.id.txttitle)).setText(title);
+	        	((TextView) findViewById(R.id.title)).setText(title);
 	        
 	        String mpaa = getIntent().getStringExtra("mpaa");
 	        if (mpaa != null)
