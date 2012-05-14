@@ -200,10 +200,10 @@ public class CardActivity extends Activity {
 		protected Drawable doInBackground(Suggestion... suggestions) {
 			
 			suggestion = suggestions[0];
-			
-			imageurl = suggestion.imageurl;
-			Log.d("Suggestible", "Loading image at '" + imageurl + "'");
 			try {
+				imageurl = suggestion.imageurl;
+				Log.d("Suggestible", "Loading image at '" + imageurl + "'");
+			
 	            InputStream is = (InputStream) new URL(imageurl).getContent();
 	            Drawable d = Drawable.createFromStream(is, "fetched image");
 	            return d;
@@ -483,11 +483,15 @@ public class CardActivity extends Activity {
 				typeIcon.setImageResource(typeImageResource);
 
 				getCardByPageNum(cardNum).setTag(tag);
-				String textToSet = card.title;
+				String textToSet = "";
+				try {
+					textToSet = card.title;
+				} catch(NullPointerException e) {
+				}
 				getTextViewByPageNum(cardNum).setText(textToSet);
 
 				
-				Log.d("Suggestible", "Trying to load image " + card.imageurl);
+				//Log.d("Suggestible", "Trying to load image " + card.imageurl);
 				
 				new DrawableFetcher().execute(card);
 				
@@ -515,7 +519,7 @@ public class CardActivity extends Activity {
 			}
 			
 
-			if(swiper.getPageCount() > 15) {
+			if(swiper.getPageCount() > 12) {
 				int current = swiper.getCurrentPage();
 				((ViewGroup) swiper.getChildAt(0)).removeViewAt(0);
 				swiper.scrollToPage(current - 1);
