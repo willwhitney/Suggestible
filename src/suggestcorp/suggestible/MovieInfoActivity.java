@@ -2,12 +2,17 @@ package suggestcorp.suggestible;
 
 
 
+import java.io.InputStream;
+import java.net.URL;
+
 import org.w3c.dom.Document;
+
 
 import com.google.gson.Gson;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.View;
 import com.google.gson.Gson;
@@ -15,6 +20,7 @@ import com.google.gson.Gson;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
@@ -23,6 +29,7 @@ import android.view.View.OnClickListener;
 import android.view.ViewGroup.LayoutParams;
 
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 public class MovieInfoActivity extends Activity {
@@ -59,23 +66,33 @@ public class MovieInfoActivity extends Activity {
 	            }
 	        });
 	        
-	        /*
+	        
+	       
+	        String imagesrc = getIntent().getStringExtra("imagesrc");
+	        if (imagesrc != null)
+	            new ImageFetcher().execute(imagesrc);
+	        
 	        String title = getIntent().getStringExtra("title");
-	        ((TextView) findViewById(R.id.txttitle)).setText(title);
+	        if (title != null)
+	        	((TextView) findViewById(R.id.txttitle)).setText(title);
 	        
 	        String mpaa = getIntent().getStringExtra("mpaa");
-	        ((TextView) findViewById(R.id.txtmpaa)).setText(mpaa);
+	        if (mpaa != null)
+	        	((TextView) findViewById(R.id.txtmpaa)).setText(mpaa);
 	        
 	        Double rating = getIntent().getDoubleExtra("rating",0.0);
 	        fillStars(rating);
 	        
 	        String runtime = getIntent().getStringExtra("runtime");
-	        ((TextView) findViewById(R.id.txttime)).setText(runtime + " min");
-	        
+	        if (runtime != null){
+	        	((TextView) findViewById(R.id.txttime)).setText(runtime + " min");
+	        }
+	        	        
 	        String description = getIntent().getStringExtra("description");
-	        ((TextView) findViewById(R.id.descriptionLarge)).setText(description);
-	        ((TextView) findViewById(R.id.descriptionSmall)).setText(description);
-	        */
+	        if (description != null){
+	        	((TextView) findViewById(R.id.moviedescriptionLarge)).setText(description);
+	        	((TextView) findViewById(R.id.moviedescriptionSmall)).setText(description);
+	        }
 	        
 	        /* not functional at moment
 	         * 
@@ -96,6 +113,29 @@ public class MovieInfoActivity extends Activity {
     	((TextView)(findViewById(R.id.moviedescriptionLarge))).setVisibility(2);//make it visible
     	
     }
+	
+	private class ImageFetcher extends AsyncTask<String, Void, Drawable> {
+
+        @Override
+        protected Drawable doInBackground(String... params) {
+            try {
+                InputStream is = (InputStream) new URL(params[0]).getContent();
+                Drawable d = Drawable.createFromStream(is, "src name");
+                return d;
+            } catch (Exception e) {
+                Log.e("Suggestible", "Could not load image at " + params[0]);
+                e.printStackTrace();
+                return null;
+            }
+        }
+
+        @Override
+        protected void onPostExecute(Drawable imgDrawable) {
+            ImageView image = (ImageView) findViewById(R.id.imageView1);
+            image.setImageDrawable(imgDrawable);
+        }
+    }
+	
 	
 	public void fillStars(double rating){
 		double stars = rating/20.00;

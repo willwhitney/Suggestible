@@ -1,13 +1,20 @@
 package suggestcorp.suggestible;
 
+import java.io.InputStream;
+import java.net.URL;
+
 import android.app.Activity;
 import android.content.Intent;
+import android.graphics.drawable.Drawable;
 import android.net.Uri;
+import android.os.AsyncTask;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup.LayoutParams;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 public class BookInfoActivity extends Activity {
@@ -57,17 +64,24 @@ public class BookInfoActivity extends Activity {
             }
         });
 		
-        /*
+        
         String title = getIntent().getStringExtra("title");
-        ((TextView) findViewById(R.id.txtmpaa)).setText(title);
+        if (title != null)
+        	((TextView) findViewById(R.id.txttitle)).setText(title);
+        
+        String imagesrc = getIntent().getStringExtra("imagesrc");
+        if (imagesrc != null)
+            new ImageFetcher().execute(imagesrc);
         
         String author = getIntent().getStringExtra("author");
-        ((TextView) findViewById(R.id.txtauthor)).setText(author);
+        if (author != null)
+            ((TextView) findViewById(R.id.txtauthor)).setText(author);
         
         String description = getIntent().getStringExtra("description");
-        ((TextView) findViewById(R.id.descriptionLarge)).setText(description);
-        ((TextView) findViewById(R.id.descriptionSmall)).setText(description);
-        */
+        if (description != null){
+        	((TextView) findViewById(R.id.bookdescriptionLarge)).setText(description);
+        	((TextView) findViewById(R.id.bookdescriptionSmall)).setText(description);
+        }
 	}
 	
 	public void fillStars(double rating){
@@ -105,5 +119,27 @@ public class BookInfoActivity extends Activity {
 		}
 		
 	}
+	
+	private class ImageFetcher extends AsyncTask<String, Void, Drawable> {
+
+        @Override
+        protected Drawable doInBackground(String... params) {
+            try {
+                InputStream is = (InputStream) new URL(params[0]).getContent();
+                Drawable d = Drawable.createFromStream(is, "src name");
+                return d;
+            } catch (Exception e) {
+                Log.e("Suggestible", "Could not load image at " + params[0]);
+                e.printStackTrace();
+                return null;
+            }
+        }
+
+        @Override
+        protected void onPostExecute(Drawable imgDrawable) {
+            ImageView image = (ImageView) findViewById(R.id.imageView1);
+            image.setImageDrawable(imgDrawable);
+        }
+    }
 	
 }

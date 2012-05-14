@@ -27,22 +27,23 @@ public class PlaceInfoActivity extends Activity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.placelayout);
 		
-		/*
-        String name = getIntent().getStringExtra("name");
-        ((TextView) findViewById(R.id.name)).setText(name);
+		
+		String title = getIntent().getStringExtra("title");
+        if (title != null)
+        	((TextView) findViewById(R.id.name)).setText(title);
         
         Double rating = getIntent().getDoubleExtra("rating",0.0);
         fillStars(rating);
         
  
         String description = getIntent().getStringExtra("description");
-        ((TextView) findViewById(R.id.descriptionLarge)).setText(description);
-        ((TextView) findViewById(R.id.descriptionSmall)).setText(description);
+        ((TextView) findViewById(R.id.placedescriptionLarge)).setText(description);
+        ((TextView) findViewById(R.id.placedescriptionSmall)).setText(description);
         
         location = getIntent().getStringExtra("location");
-        latitude = getIntent().getDoubleExtra("latitude"):
-        longitude = getInent().getDoubleExtra("longitude):
-        */
+        latitude = getIntent().getDoubleExtra("latitude",latitude);
+        longitude = getIntent().getDoubleExtra("longitude",longitude);
+        
 		
 		String urlLocation = URLEncoder.encode(location);
         String url = "http://maps.google.com/maps/api/staticmap?size=250x200&maptype=roadmap&sensor=false&markers=color:green%7Clabel:A%7C"
