@@ -124,8 +124,6 @@ public class CardActivity extends Activity {
 	private void doneFetching() {
 		cardmaker.onPageChanged(-1, 0);
 		for (int i = 0; i < 4; i++) {
-        	filterButtons[i] = (ImageButton) filters.getChildAt(i);
-        	filterButtons[i].setTag("on");
         	filterButtons[i].setOnClickListener(new OnClickListener() {
 
 				public void onClick(View v) {
@@ -190,12 +188,18 @@ public class CardActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.card_layout);
         Log.d("Suggestible", "I'm running!");
-        
-    	suggestionType.add("outing");
+
+		suggestionType.add("outing");
     	suggestionType.add("book");
     	suggestionType.add("movie");
     	suggestionType.add("restaurant");
-
+    	filterButtons = new ImageButton[4];
+    	
+        filters = (LinearLayout) findViewById(R.id.filters);
+		for (int i = 0; i < 4; i++) {
+        	filterButtons[i] = (ImageButton) filters.getChildAt(i);
+        	filterButtons[i].setTag("on");
+		}
         
         locManager = (LocationManager) this.getSystemService(Context.LOCATION_SERVICE);
         location = locManager.getLastKnownLocation(LocationManager.NETWORK_PROVIDER);
@@ -208,12 +212,11 @@ public class CardActivity extends Activity {
         
         cardmaker = new OnDemandCardmaker();
         swiper = (uk.co.jasonfry.android.tools.ui.SwipeView) findViewById(R.id.flipper);
-        filterButtons = new ImageButton[4];
-        filters = (LinearLayout) findViewById(R.id.filters);
+        
                         
         
             
-        updateFilters();
+        //updateFilters();
         fixFonts();
 		
 		swiper.setOnPageChangedListener(cardmaker);
@@ -350,6 +353,7 @@ public class CardActivity extends Activity {
 							detailsIntent.putExtra("author", card.author);
 							detailsIntent.putExtra("description", card.description);
 							detailsIntent.putExtra("imagesrc", card.imageurl);
+							Log.d("Suggestible", "book image source: " + card.imageurl);
 							
 							break;
 						case 2:
@@ -366,8 +370,8 @@ public class CardActivity extends Activity {
 							detailsIntent.putExtra("description", card.description);
 							
 							//fix these
-							detailsIntent.putExtra("mpaa", card.id);
-							detailsIntent.putExtra("runtime", card.id);
+							detailsIntent.putExtra("mpaa", card.mpaa_rating);
+							detailsIntent.putExtra("runtime", card.runtime);
 							break;
 						case 3:
 							card = restaurants.remove(0);
@@ -408,78 +412,10 @@ public class CardActivity extends Activity {
 				new DrawableFetcher().execute(card);
 				
 				getCardButtonsByPageNum(swiper.getPageCount() - 1)[0].setOnClickListener(new OnClickListener() {
-					
-					public void onClick(View v) {
-						
+					public void onClick(View v) {	
 						CardActivity.this.startActivity(finalDetails);
 					}
-					
 				});
-				
-				
-//				if (swiper.getPageCount() - 1  + (MAX_PAGES - remainingPages) % 4 == 0) {
-//					getCardButtonsByPageNum(swiper.getPageCount() - 1)[0].setOnClickListener(new OnClickListener() {
-//						
-//						public void onClick(View v) {
-//							Intent detailsIntent = new Intent(CardActivity.this, PlaceInfoActivity.class);
-//							CardActivity.this.startActivity(detailsIntent);
-//						}
-//						
-//					});
-//				} else if (swiper.getPageCount() - 1  + (MAX_PAGES - remainingPages) % 4 == 1) {
-//					getCardButtonsByPageNum(swiper.getPageCount() - 1)[0].setOnClickListener(new OnClickListener() {
-//						
-//						public void onClick(View v) {
-//							Intent detailsIntent = new Intent(CardActivity.this, BookInfoActivity.class);
-//							/*
-//							 * Pass JSON variables to the new info display activity (id not included for books)
-//							detailsIntent.putExtra("title", title);
-//							detailsIntent.putExtra("imagesrc", imagesrc);
-//							detailsIntent.putExtra("rating", rating);
-//							detailsIntent.putExtra("description", description);
-//							detailsIntent.putExtra("maplocation", maplocation);
-//							*/
-//							CardActivity.this.startActivity(detailsIntent);
-//						}
-//						
-//					});
-//				} else if (swiper.getPageCount() - 1  + (MAX_PAGES - remainingPages) % 4 == 2) {
-//					getCardButtonsByPageNum(swiper.getPageCount() - 1)[0].setOnClickListener(new OnClickListener() {
-//						
-//						public void onClick(View v) {
-//							Intent detailsIntent = new Intent(CardActivity.this, MovieInfoActivity.class);
-//							/*
-//							 * Pass JSON variables to the new info display activity
-//							detailsIntent.putExtra("title", title);
-//                            detailsIntent.putExtra("imagesrc", imagesrc);
-//                            detailsIntent.putExtra("rating", rating);
-//                            detailsIntent.putExtra("description", description);
-//                            detailsIntent.putExtra("maplocation", maplocation);
-//                            detailsIntent.putExtra("id", id);
-//                            */
-//							CardActivity.this.startActivity(detailsIntent);
-//						}
-//						
-//					});
-//				} else if (swiper.getPageCount() - 1  + (MAX_PAGES - remainingPages) % 4 == 3) {
-//					getCardButtonsByPageNum(swiper.getPageCount() - 1)[0].setOnClickListener(new OnClickListener() {
-//						
-//						public void onClick(View v) {
-//							Intent detailsIntent = new Intent(CardActivity.this, RestaurantInfoActivity.class);
-//							CardActivity.this.startActivity(detailsIntent);
-//						}
-//						
-//					});
-//				} else {
-//					getCardButtonsByPageNum(swiper.getPageCount() - 1)[0].setOnClickListener(new OnClickListener() {
-//						
-//						public void onClick(View v) {
-//
-//							Toast.makeText(CardActivity.this, "not implemented", Toast.LENGTH_SHORT).show();
-//							
-//						}
-//					});
-//				}
 				
 				
 				getCardButtonsByPageNum(swiper.getPageCount() - 1)[1].setOnClickListener(new OnClickListener() {

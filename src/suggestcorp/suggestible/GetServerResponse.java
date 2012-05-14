@@ -27,8 +27,9 @@ public class GetServerResponse {
         public String description;
         public String url;
         public String type;
-        public String mpaa;
+        public String mpaa_rating;
         public String author;
+        public String runtime;
 
         Suggestion() {
 
