@@ -19,6 +19,9 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.KeyEvent;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
@@ -238,7 +241,33 @@ public class CardActivity extends Activity {
         fixFonts();
 		
 		swiper.setOnPageChangedListener(cardmaker);
+		
+		
 
+    }
+    
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.layout.main_menu, menu);
+        return true;
+    }
+    
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        // Handle item selection
+        switch (item.getItemId()) {
+            case R.id.about:
+                Intent aboutIntent = new Intent(CardActivity.this, About.class);
+                CardActivity.this.startActivity(aboutIntent);
+                return true;
+            case R.id.deleted:
+                Intent detailsIntent = new Intent(CardActivity.this, UndeleteActivity.class);
+                CardActivity.this.startActivity(detailsIntent);
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
     }
     
     public void filterCards() {
@@ -328,16 +357,8 @@ public class CardActivity extends Activity {
 
 				
 				Intent detailsIntent = null;
-//				/*
-//				 * Pass JSON variables to the new info display activity (id not included for books)
-//				detailsIntent.putExtra("title", title);
-//				detailsIntent.putExtra("imagesrc", imagesrc);
-//				detailsIntent.putExtra("rating", rating);
-//				detailsIntent.putExtra("description", description);
-//				detailsIntent.putExtra("maplocation", maplocation);
-//				*/
-//				CardActivity.this.startActivity(detailsIntent);
 				
+				int typeImageResource = R.drawable.footprint;
 				Suggestion card = null;
 				Suggestion tag = null;
 				int currentCardType = 0;
@@ -349,6 +370,7 @@ public class CardActivity extends Activity {
 						case 0:
 							card = outings.remove(0);
 							tag = card;
+							typeImageResource = R.drawable.footprint;
 							
 							detailsIntent = new Intent(CardActivity.this, PlaceInfoActivity.class);
 //							// Pass JSON variables to the new info display activity (id not included for books)
@@ -365,6 +387,7 @@ public class CardActivity extends Activity {
 							card = books.remove(0);
 							tag = card;
 							getImageViewByPageNum(cardNum).setScaleType(ImageView.ScaleType.FIT_XY);
+							typeImageResource = R.drawable.book;
 							
 							detailsIntent = new Intent(CardActivity.this, BookInfoActivity.class);
 //							// Pass JSON variables to the new info display activity (id not included for books)
@@ -380,6 +403,7 @@ public class CardActivity extends Activity {
 							tag = card;
 							getImageViewByPageNum(cardNum).setScaleType(ImageView.ScaleType.FIT_XY);
 							getImageViewByPageNum(cardNum).setLayoutParams(new LayoutParams(250, 400));
+							typeImageResource = R.drawable.movie;
 							
 							detailsIntent = new Intent(CardActivity.this, MovieInfoActivity.class);
 //							// Pass JSON variables to the new info display activity (id not included for books)
@@ -395,6 +419,7 @@ public class CardActivity extends Activity {
 						case 3:
 							card = restaurants.remove(0);
 							tag = card;
+							typeImageResource = R.drawable.food;
 							
 							detailsIntent = new Intent(CardActivity.this, RestaurantInfoActivity.class);
 //							// Pass JSON variables to the new info display activity (id not included for books)
@@ -421,6 +446,10 @@ public class CardActivity extends Activity {
 					}
 				}
 				final Intent finalDetails = detailsIntent;
+				
+				ImageView typeIcon = (ImageView) getCardByPageNum(cardNum).findViewWithTag("typeicon");
+				//Log.d("Suggestible", typeIcon.toString());
+				typeIcon.setImageResource(typeImageResource);
 
 				getCardByPageNum(cardNum).setTag(tag);
 				String textToSet = card.title;
@@ -442,7 +471,7 @@ public class CardActivity extends Activity {
 
 					public void onClick(View v) {
 						remainingPages--;
-						((ViewGroup) swiper.getChildAt(0)).removeView((View) v.getParent().getParent().getParent());
+						((ViewGroup) swiper.getChildAt(0)).removeView((View) v.getParent());
 						addCard();
 						
 					}
@@ -459,7 +488,7 @@ public class CardActivity extends Activity {
 			}
 		}
     }
-    
+    /*
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event) {
         if ( keyCode == KeyEvent.KEYCODE_MENU ) {
@@ -469,7 +498,7 @@ public class CardActivity extends Activity {
         }
         return super.onKeyDown(keyCode, event);
     }
-    
+    */
     public int updateFilters() {
     	int active = 0;
     	for (int i = 0; i < 4; i++) {

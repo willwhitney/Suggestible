@@ -38,15 +38,9 @@ public class UndeleteActivity extends Activity {
         for (int i=0; i<length; i++){
             suggestions.add(prefs.getString(""+i, ""));
         }
-        suggestions.add("hello");
-        suggestions.add("goodbye");
-        suggestions.add("suggestion");
-        suggestions.add("hello2");
-        suggestions.add("goodbye2");
-        suggestions.add("suggestion2");
-        suggestions.add("hello3");
-        suggestions.add("goodbye3");
-        suggestions.add("suggestion3");
+        suggestions.add("Finding Nemo");
+        suggestions.add("Frank's Diner");
+        suggestions.add("Harry Potter and the Goblet of Fire");
         
         adapter = new ArrayAdapter<String>(this,
                 android.R.layout.simple_list_item_multiple_choice, suggestions);

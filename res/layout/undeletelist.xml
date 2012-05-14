@@ -11,7 +11,12 @@
         android:layout_height="wrap_content"
         android:layout_weight="1">
     </ListView>
-
+    
+	<TextView
+	    android:id="@+id/noDelete"
+	    android:layout_width="250dp"
+	    android:layout_height="wrap_content"
+	    android:text="You haven't deleted any suggestions! Click on the X on the corner of a suggestion card to delete a suggestion"/>
     <FrameLayout
         android:id="@+id/FrameLayout01"
         android:layout_width="fill_parent"
