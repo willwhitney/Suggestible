@@ -1,61 +1,74 @@
 <?xml version="1.0" encoding="utf-8"?>
-<merge xmlns:android="http://schemas.android.com/apk/res/android">
+<merge xmlns:android="http://schemas.android.com/apk/res/android" >
 
-<LinearLayout 
-    android:orientation="horizontal"
-    android:layout_width="fill_parent"
-    android:layout_height="50dp"
-    android:gravity="bottom|center_horizontal"
-    android:id="@+id/filters"
->
-	<ImageButton 
-		  android:background="@drawable/rounded_border"
-	      android:layout_width="10dp"
-	      android:layout_height="fill_parent"
-	      android:text="places"
-	      android:layout_weight="1"
-	      android:src="@drawable/places"
-	      android:scaleType="centerInside"
-	      android:layout_marginLeft="10dp"
-		  android:layout_marginRight="10dp"
-		  android:padding="5dp"
-	  />
-	  <ImageButton 
-	      android:background="#FFFFFF"
-	      android:layout_width="10dp"
-	      android:layout_height="fill_parent"
-	      android:text="books"
-	      android:layout_weight="1"
-	      android:src="@drawable/book"
-	      android:scaleType="centerInside"
-	      android:layout_marginLeft="10dp"
-		  android:layout_marginRight="10dp"
-	      android:padding="5dp"
-	  />
-	  <ImageButton 
-	      android:background="#FFFFFF"
-	      android:layout_width="10dp"
-	      android:layout_height="fill_parent"
-	      android:text="movies"
-	      android:layout_weight="1"
-	      android:src="@drawable/movie"
-	      android:scaleType="centerInside"
-	      android:layout_marginLeft="10dp"
-		  android:layout_marginRight="10dp"
-		  android:padding="5dp"
-	  />
-	  <ImageButton 
-	      android:background="#FFFFFF"
-	      android:layout_width="10dp"
-	      android:layout_height="fill_parent"
-	      android:text="food"
-	      android:layout_weight="1"
-	      android:src="@drawable/food"
-	      android:scaleType="centerInside"
-	      android:layout_marginLeft="10dp"
-		  android:layout_marginRight="10dp"
-		  android:padding="5dp"
-	  />
+    <LinearLayout
+        android:id="@+id/filters_border"
+        android:layout_width="fill_parent"
+        android:layout_height="59dp"
+        android:orientation="vertical"
+        android:paddingBottom="5dp" 
+        android:background="#636351">
+        
+        <ImageView
+            android:layout_width="fill_parent"
+            android:layout_height="4dp"
+            android:src="@drawable/ridge" />
+        
+        <LinearLayout
+        android:id="@+id/filters"
+        android:layout_width="fill_parent"
+        android:layout_height="50dp"
+        android:gravity="bottom|center_horizontal"
+        android:orientation="horizontal"
+        android:paddingTop="3dp" >
 
+        <ImageButton
+            android:layout_width="15dp"
+            android:layout_height="fill_parent"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_weight="1"
+            android:background="@drawable/button"
+            android:padding="5dp"
+            android:scaleType="centerInside"
+            android:src="@drawable/footprint"
+            android:text="places" />
+
+        <ImageButton
+            android:layout_width="15dp"
+            android:layout_height="fill_parent"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_weight="1"
+            android:background="@drawable/button_dark2"
+            android:padding="5dp"
+            android:scaleType="centerInside"
+            android:src="@drawable/booklight"
+            android:text="books" />
+
+        <ImageButton
+            android:layout_width="15dp"
+            android:layout_height="fill_parent"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_weight="1"
+            android:background="@drawable/button"
+            android:padding="5dp"
+            android:scaleType="centerInside"
+            android:src="@drawable/movie"
+            android:text="movies" />
+
+        <ImageButton
+            android:layout_width="15dp"
+            android:layout_height="fill_parent"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_weight="1"
+            android:background="@drawable/button_dark2"
+            android:padding="5dp"
+            android:scaleType="centerInside"
+            android:src="@drawable/foodlight"
+            android:text="food" />
+    </LinearLayout>
 </LinearLayout>
 </merge>
