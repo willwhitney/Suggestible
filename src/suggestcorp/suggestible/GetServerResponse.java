@@ -20,11 +20,16 @@ public class GetServerResponse {
 
     public class Suggestion {
         public String title;
-        public double rating;
+        public float rating;
         public String imageurl;
         public String maplocation;
         public String id;
         public String description;
+        public String url;
+        public String type;
+        public String mpaa_rating;
+        public String author;
+        public String runtime;
 
         Suggestion() {
 
@@ -39,6 +44,10 @@ public class GetServerResponse {
     	Type collectionType = new TypeToken<List<Suggestion>>(){}.getType();
     	List<Suggestion> suggestions = gson.fromJson(json, collectionType);
     	
+    	for (Suggestion suggestion: suggestions) {
+    		suggestion.type = "movie";
+    	}
+    	
     	return suggestions;
     }
     
@@ -51,6 +60,11 @@ public class GetServerResponse {
     	Type collectionType = new TypeToken<List<Suggestion>>(){}.getType();
     	List<Suggestion> suggestions = gson.fromJson(json, collectionType);
     	
+    	for (Suggestion suggestion: suggestions) {
+    		suggestion.type = "book";
+    	}
+
+    	
     	return suggestions;
     }
     
@@ -61,6 +75,11 @@ public class GetServerResponse {
     	Gson gson = new Gson();
     	Type collectionType = new TypeToken<List<Suggestion>>(){}.getType();
     	List<Suggestion> suggestions = gson.fromJson(json, collectionType);
+    	
+    	for (Suggestion suggestion: suggestions) {
+    		suggestion.type = "restaurant";
+    	}
+
     	
     	return suggestions;
     }
@@ -73,13 +92,18 @@ public class GetServerResponse {
     	Type collectionType = new TypeToken<List<Suggestion>>(){}.getType();
     	List<Suggestion> suggestions = gson.fromJson(json, collectionType);
     	
+    	for (Suggestion suggestion: suggestions) {
+    		suggestion.type = "outing";
+    	}
+
+    	
     	return suggestions;
     }
     
  
     public static String getURLContents(String url) {
-    	Log.d("Suggestible", "I AM A THING LOOK AT ME NOW");
-    	Log.d("Suggestible", url);
+//    	Log.d("Suggestible", "I AM A THING LOOK AT ME NOW");
+    	Log.d("Suggestible", "getting this URL: " + url);
 		try {
 			
 			URL target = new URL(url);

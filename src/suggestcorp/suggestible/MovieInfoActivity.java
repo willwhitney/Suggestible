@@ -7,7 +7,6 @@ import java.net.URL;
 
 import org.w3c.dom.Document;
 
-
 import com.google.gson.Gson;
 
 import android.app.Activity;

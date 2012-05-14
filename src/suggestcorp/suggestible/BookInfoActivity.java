@@ -137,7 +137,7 @@ public class BookInfoActivity extends Activity {
 
         @Override
         protected void onPostExecute(Drawable imgDrawable) {
-            ImageView image = (ImageView) findViewById(R.id.imageView1);
+            ImageView image = (ImageView) findViewById(R.id.bookimage);
             image.setImageDrawable(imgDrawable);
         }
     }
