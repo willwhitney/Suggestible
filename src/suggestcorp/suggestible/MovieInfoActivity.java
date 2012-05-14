@@ -80,6 +80,7 @@ public class MovieInfoActivity extends Activity {
 	        	((TextView) findViewById(R.id.txtmpaa)).setText(mpaa);
 	        
 	        Double rating = getIntent().getDoubleExtra("rating",0.0);
+	        Log.d("Suggestible", "Movie got a rating of: " + rating);
 	        fillStars(rating);
 	        
 	        String runtime = getIntent().getStringExtra("runtime");

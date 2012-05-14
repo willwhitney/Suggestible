@@ -33,7 +33,8 @@
             <RelativeLayout
                 android:layout_width="fill_parent"
                 android:layout_height="275dp"
-                android:orientation="vertical" >
+                android:orientation="vertical" 
+                android:gravity="center_horizontal">
 
                 <ImageView
                     android:layout_width="wrap_content"
@@ -68,34 +69,17 @@
             </LinearLayout>
         </LinearLayout>
 
-        <ImageView
-            android:id="@+id/next"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentRight="true"
-            android:layout_centerVertical="true"
-            android:background="@null"
-            android:src="@drawable/lightrightarrow" />
-
-        <ImageView
-            android:id="@+id/back"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentLeft="true"
-            android:layout_alignTop="@+id/next"
-            android:background="@null"
-            android:src="@drawable/lightleftarrow" />
-
         <Button
             android:id="@+id/delete"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
             android:layout_alignParentTop="true"
+            android:tag="second"
             android:background="@drawable/delete_button" />
 
         <ImageView
-            android:id="@+id/tap"
+            android:id="@+id/tag"
             android:layout_width="70dp"
             android:layout_height="55dp"
             android:layout_alignLeft="@+id/linearLayout1"
@@ -104,7 +88,7 @@
             android:layout_marginLeft="5dp"
             android:src="@drawable/thintab" />
         <ImageView
-            android:id="@+id/tap"
+            android:id="@+id/type"
             android:padding="5dp"
             android:layout_width="65dp"
             android:layout_height="50dp"

@@ -22,6 +22,8 @@ public class RestaurantInfoActivity extends Activity {
     Double latitude = 42.359013;
     Double longitude = -71.09354;
     String location = "32 Vassar St, Cambridge, MA, 02139";
+    String yelpURL = "yelp.com";
+
 
     public void onCreate(Bundle savedInstanceState) {
         /** hello */
@@ -45,12 +47,15 @@ public class RestaurantInfoActivity extends Activity {
         
         if (getIntent().getStringExtra("location") != null)
         	location = getIntent().getStringExtra("location");
-        latitude = getIntent().getDoubleExtra("latitude",latitude);
-        longitude = getIntent().getDoubleExtra("longitude",longitude);
+        latitude = getIntent().getDoubleExtra("latitude",latitude) * 1000;
+        longitude = getIntent().getDoubleExtra("longitude",longitude) * 1000;
+        yelpURL = getIntent().getStringExtra("url");
+        Log.d("Suggestible", "yelpURL: " + yelpURL);
+
         
 
         String urlLocation = URLEncoder.encode(location);
-        String url = "http://maps.google.com/maps/api/staticmap?size=250x200&maptype=roadmap&sensor=false&markers=color:green%7Clabel:A%7C"
+        String url = "http://maps.google.com/maps/api/staticmap?size=600x450&maptype=roadmap&sensor=false&markers=color:green%7Clabel:A%7C"
                 + latitude
                 + ","
                 + longitude
@@ -73,7 +78,6 @@ public class RestaurantInfoActivity extends Activity {
         yelpButton.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
-                String yelpURL = "";
                 final Intent intent = new Intent(Intent.ACTION_VIEW).setData(Uri.parse(yelpURL));
                 RestaurantInfoActivity.this.startActivity(intent);
             }

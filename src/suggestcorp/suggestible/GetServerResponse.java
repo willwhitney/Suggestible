@@ -20,7 +20,7 @@ public class GetServerResponse {
 
     public class Suggestion {
         public String title;
-        public float rating;
+        public double rating;
         public String imageurl;
         public String maplocation;
         public String id;

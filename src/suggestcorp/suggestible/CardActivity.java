@@ -11,7 +11,6 @@ import uk.co.jasonfry.android.tools.ui.SwipeView.OnPageChangedListener;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
-import android.graphics.Color;
 import android.graphics.Typeface;
 import android.graphics.drawable.Drawable;
 import android.location.Location;
@@ -27,8 +26,8 @@ import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.widget.LinearLayout.LayoutParams;
 import android.widget.RelativeLayout;
+import android.widget.RelativeLayout.LayoutParams;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -144,6 +143,25 @@ public class CardActivity extends Activity {
 				}
         	});
         }
+		
+		ImageView next = (ImageView) findViewById(R.id.next);
+		ImageView back = (ImageView) findViewById(R.id.back);
+		
+		next.setOnClickListener(new OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				int page = swiper.getCurrentPage();
+				swiper.scrollToPage(page+1);
+			}
+		});
+		
+		back.setOnClickListener(new OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				int page = swiper.getCurrentPage();
+				swiper.scrollToPage(page-1);
+			}
+		});
 	}
 	
 	private class DrawableFetcher extends AsyncTask<Suggestion, Void, Drawable> {
@@ -306,7 +324,7 @@ public class CardActivity extends Activity {
 				
 				int cardNum = swiper.getPageCount();
 				View newCard = new View(CardActivity.this);
-				newCard.inflate(CardActivity.this, R.layout.card, (ViewGroup) swiper);
+				newCard.inflate(CardActivity.this, R.layout.main_card_layout, (ViewGroup) swiper);
 
 				
 				Intent detailsIntent = null;
@@ -336,11 +354,12 @@ public class CardActivity extends Activity {
 //							// Pass JSON variables to the new info display activity (id not included for books)
 							detailsIntent.putExtra("title", card.title);
 							detailsIntent.putExtra("imagesrc", card.imageurl);
-							detailsIntent.putExtra("rating", card.rating);
+							detailsIntent.putExtra("rating", card.rating * 20);
 							detailsIntent.putExtra("description", card.description);
 							detailsIntent.putExtra("location", card.maplocation);
 							detailsIntent.putExtra("latitude", location.getLatitude() / 1000);
 							detailsIntent.putExtra("longitude", location.getLongitude() / 1000);
+							detailsIntent.putExtra("url", card.url);
 							break;
 						case 1:
 							card = books.remove(0);
@@ -380,12 +399,13 @@ public class CardActivity extends Activity {
 							detailsIntent = new Intent(CardActivity.this, RestaurantInfoActivity.class);
 //							// Pass JSON variables to the new info display activity (id not included for books)
 							detailsIntent.putExtra("title", card.title);
-							detailsIntent.putExtra("rating", card.rating);
+							detailsIntent.putExtra("rating", card.rating * 20);
 							detailsIntent.putExtra("description", card.description);
 							detailsIntent.putExtra("imagesrc", card.imageurl);
 							detailsIntent.putExtra("location", card.maplocation);
 							detailsIntent.putExtra("latitude", location.getLatitude() / 1000);
 							detailsIntent.putExtra("longitude", location.getLongitude() / 1000);
+							detailsIntent.putExtra("url", card.url);
 							break;
 						}
 					} 
@@ -455,37 +475,37 @@ public class CardActivity extends Activity {
     	for (int i = 0; i < 4; i++) {
     		if (filterButtons[i].getTag().equals("on")) {
     			active ++;
-    			filterButtons[i].setBackgroundColor(Color.parseColor("#F3F377"));
-//    			switch(i) {
-//    				case 0:
-//    					filterButtons[i].setImageResource(R.drawable.placesglow);
-//    					break;
-//    				case 1:
-//    					filterButtons[i].setImageResource(R.drawable.bookglow);
-//    					break;
-//    				case 2:
-//    					filterButtons[i].setImageResource(R.drawable.movieglow);
-//    					break;
-//    				case 3:
-//    					filterButtons[i].setImageResource(R.drawable.foodglow);
-//    					break;
-//    			}
+    			filterButtons[i].setBackgroundResource(R.drawable.button);
+    			switch(i) {
+    				case 0:
+    					filterButtons[i].setImageResource(R.drawable.footprint);
+    					break;
+    				case 1:
+    					filterButtons[i].setImageResource(R.drawable.book);
+    					break;
+    				case 2:
+    					filterButtons[i].setImageResource(R.drawable.movie);
+    					break;
+    				case 3:
+    					filterButtons[i].setImageResource(R.drawable.food);
+    					break;
+    			}
     		} else {
-    			filterButtons[i].setBackgroundColor(Color.parseColor("#AAAAAA"));
-//    			switch(i) {
-//					case 0:
-//						filterButtons[i].setImageResource(R.drawable.places);
-//						break;
-//					case 1:
-//						filterButtons[i].setImageResource(R.drawable.book);
-//						break;
-//					case 2:
-//						filterButtons[i].setImageResource(R.drawable.movie);
-//						break;
-//					case 3:
-//						filterButtons[i].setImageResource(R.drawable.food);
-//						break;
-//    			}
+    			filterButtons[i].setBackgroundResource(R.drawable.button_dark2);
+    			switch(i) {
+					case 0:
+						filterButtons[i].setImageResource(R.drawable.footprintlight);
+						break;
+					case 1:
+						filterButtons[i].setImageResource(R.drawable.booklight);
+						break;
+					case 2:
+						filterButtons[i].setImageResource(R.drawable.movielight);
+						break;
+					case 3:
+						filterButtons[i].setImageResource(R.drawable.foodlight);
+						break;
+    			}
     		}
         } 
     	return active;

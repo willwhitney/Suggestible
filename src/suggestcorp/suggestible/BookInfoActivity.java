@@ -21,13 +21,6 @@ public class BookInfoActivity extends Activity {
     String author = "Herman Melville";
     String title = "Moby Dick";
     
-    public void showMore(View view){        
-        ((Button)(findViewById(R.id.bookshowMoreButton))).setVisibility(8);//make it gone
-        ((TextView)(findViewById(R.id.bookdescriptionSmall))).setVisibility(8);//make it gone
-        ((TextView)(findViewById(R.id.bookdescriptionLarge))).setVisibility(2);//make it visible
-        
-    }
-    
 	public void onCreate(Bundle savedInstanceState) {
 		
 		super.onCreate(savedInstanceState);
@@ -80,7 +73,6 @@ public class BookInfoActivity extends Activity {
         String description = getIntent().getStringExtra("description");
         if (description != null){
         	((TextView) findViewById(R.id.bookdescriptionLarge)).setText(description);
-        	((TextView) findViewById(R.id.bookdescriptionSmall)).setText(description);
         }
 	}
 	

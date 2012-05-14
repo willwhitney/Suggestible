@@ -40,10 +40,10 @@
             android:layout_marginLeft="10dp"
             android:layout_marginRight="10dp"
             android:layout_weight="1"
-            android:background="@drawable/button_dark2"
+            android:background="@drawable/button"
             android:padding="5dp"
             android:scaleType="centerInside"
-            android:src="@drawable/booklight"
+            android:src="@drawable/book"
             android:text="books" />
 
         <ImageButton
@@ -64,10 +64,10 @@
             android:layout_marginLeft="10dp"
             android:layout_marginRight="10dp"
             android:layout_weight="1"
-            android:background="@drawable/button_dark2"
+            android:background="@drawable/button"
             android:padding="5dp"
             android:scaleType="centerInside"
-            android:src="@drawable/foodlight"
+            android:src="@drawable/food"
             android:text="food" />
     </LinearLayout>
 </LinearLayout>

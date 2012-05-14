@@ -76,47 +76,23 @@
             </LinearLayout>
         </LinearLayout>
 
-        <TextView
-            android:id="@+id/bookdescriptionSmall"
-            android:layout_width="fill_parent"
-            android:layout_height="110dip"
-            android:layout_marginLeft="5dip"
-            android:layout_marginRight="5dip"
-            android:layout_marginTop="5dip"
-            android:text="@string/lorem"
-            android:textColor="#000000"
-            android:textSize="16sp" />
-<RelativeLayout
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical" >
-        <Button
-            android:id="@+id/bookshowMoreButton"
-            android:layout_width="wrap_content"
-            android:layout_height="20dip"
-            android:layout_margin="5dip"
-            android:drawableLeft="@drawable/expand"
-            android:layout_alignParentRight="true"
-            android:textColor="#6d7065"
-            android:background="@null"
-			android:onClick = "showMore"
-            android:text="Show More" />
-</RelativeLayout>
+
         <TextView
             android:id="@+id/bookdescriptionLarge"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
+            android:minHeight="130dp"
             android:layout_margin="5dip"
             android:text="@string/lorem"
             android:textColor="#000000"
-            android:textSize="16sp"
-            android:visibility="gone" />
+            android:textSize="16sp"/>
 
         <LinearLayout
             android:layout_width="fill_parent"
-            android:layout_height="150dip"
+            android:layout_height="wrap_content"
             android:gravity="center_horizontal|center_vertical"
-            android:orientation="vertical" >
+            android:orientation="vertical" 
+            android:paddingBottom="40dp">
 
             <Button
                 android:id="@+id/librarybutton"

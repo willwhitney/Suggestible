@@ -15,6 +15,7 @@
 		android:id="@+id/name"
 		android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:minHeight="70dp"
         android:gravity="center_vertical|center_horizontal"
         android:text="Institute of Contemporary Art"
         android:textSize="25sp"
@@ -84,14 +85,13 @@
                     android:background="@drawable/border"
                     android:maxHeight="200dp"
                     android:maxWidth="250dp"
-                    android:scaleType="fitCenter"
-                    android:src="@drawable/maps" />
+                    android:scaleType="fitCenter"/>
 
             </RelativeLayout>
 	<TextView
             android:id="@+id/placedescriptionSmall"
             android:layout_width="fill_parent"
-            android:layout_height="70dip"
+            android:layout_height="90dip"
             android:layout_marginLeft="5dip"
             android:layout_marginRight="5dip"
             android:layout_marginTop="5dip"
@@ -118,6 +118,7 @@
             android:id="@+id/placedescriptionLarge"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
+            android:minHeight="110dp"
             android:layout_margin="5dip"
             android:text="@string/lorem"
             android:textColor="#000000"
