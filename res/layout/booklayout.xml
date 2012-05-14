@@ -27,8 +27,9 @@
                     android:adjustViewBounds="true"
                     android:background="@drawable/border"
                     android:maxHeight="200dp"
-                    android:maxWidth="150dp"
+                    android:maxWidth="140dp"
                     android:scaleType="fitCenter"
+                    android:src="@drawable/loading"
                     />
             </RelativeLayout>
 

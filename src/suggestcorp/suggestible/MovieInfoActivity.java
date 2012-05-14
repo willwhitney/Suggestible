@@ -33,6 +33,7 @@ import android.widget.TextView;
 
 public class MovieInfoActivity extends Activity {
 
+    String title = "Hunger Games";
 	
 	 public void onCreate(Bundle savedInstanceState) {
 
@@ -55,11 +56,11 @@ public class MovieInfoActivity extends Activity {
 	            @Override
 	            public void onClick(View v) {
 	                String titlePlus = title.replace(" ", "+");
-	                String url = "http://www.imdbapi.com/?t=" + titlePlus; 
-	                String json = GetServerResponse.getURLContents(url); 
-	                Gson gson = new Gson();
-	                String id = gson.fromJson("imdbID", String.class);
-	                url = "http://www.imdb.com/"+ id;
+//	                String url = "http://www.imdbapi.com/?t=" + titlePlus; 
+//	                String json = GetServerResponse.getURLContents(url); 
+//	                Gson gson = new Gson();
+//	                String id = gson.fromJson("imdbID", String.class);
+	                String url = "http://m.imdb.com/find?q="+ titlePlus;
 	                final Intent intent = new Intent(Intent.ACTION_VIEW).setData(Uri.parse(url));
 	                MovieInfoActivity.this.startActivity(intent);
 	            }
@@ -71,7 +72,7 @@ public class MovieInfoActivity extends Activity {
 	        if (imagesrc != null)
 	            new ImageFetcher().execute(imagesrc);
 	        
-	        String title = getIntent().getStringExtra("title");
+	        title = getIntent().getStringExtra("title");
 	        if (title != null)
 	        	((TextView) findViewById(R.id.title)).setText(title);
 	        
@@ -173,7 +174,6 @@ public class MovieInfoActivity extends Activity {
 		
 	}
 
-    String title = "Hunger Games";
 
    
 

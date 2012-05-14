@@ -11,6 +11,7 @@ import uk.co.jasonfry.android.tools.ui.SwipeView.OnPageChangedListener;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Typeface;
 import android.graphics.drawable.Drawable;
 import android.location.Location;
@@ -18,12 +19,13 @@ import android.location.LocationManager;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.view.View.OnTouchListener;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageButton;
@@ -155,6 +157,7 @@ public class CardActivity extends Activity {
 			public void onClick(View v) {
 				int page = swiper.getCurrentPage();
 				swiper.scrollToPage(page+1);
+		        ((ImageView) v).setAlpha(100);
 			}
 		});
 		
@@ -163,7 +166,28 @@ public class CardActivity extends Activity {
 			public void onClick(View v) {
 				int page = swiper.getCurrentPage();
 				swiper.scrollToPage(page-1);
+				((ImageView) v).setAlpha(100);
 			}
+		});
+		back.setOnTouchListener(new OnTouchListener() {
+			@Override
+			public boolean onTouch(View v, MotionEvent e) {
+				if (e.getAction() == MotionEvent.ACTION_DOWN) {
+					((ImageView) v).setAlpha(255);
+				}
+				return false;
+			}
+
+		});
+		next.setOnTouchListener(new OnTouchListener() {
+			@Override
+			public boolean onTouch(View v, MotionEvent e) {
+				if (e.getAction() == MotionEvent.ACTION_DOWN) {
+					((ImageView) v).setAlpha(255);
+				}
+				return false;
+			}
+
 		});
 	}
 	
@@ -209,6 +233,10 @@ public class CardActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.card_layout);
         Log.d("Suggestible", "I'm running!");
+        
+//        SharedPreferences prefs = getPreferences(0);
+//        SharedPreferences.Editor prefEdit = prefs.edit();
+//        prefEdit.putInt("length", 0);
 
 		suggestionType.add("outing");
     	suggestionType.add("book");
@@ -242,7 +270,10 @@ public class CardActivity extends Activity {
 		
 		swiper.setOnPageChangedListener(cardmaker);
 		
-		
+		ImageView arrowleft = (ImageView) findViewById(R.id.back);
+        ImageView arrowright = (ImageView) findViewById(R.id.next);
+        arrowleft.setAlpha(100);
+        arrowright.setAlpha(100);
 
     }
     
@@ -466,11 +497,14 @@ public class CardActivity extends Activity {
 					}
 				});
 				
+				//Log.d("Suggestible", "new card tag: " + getCardByPageNum(cardNum).getTag());
 				
 				getCardButtonsByPageNum(swiper.getPageCount() - 1)[1].setOnClickListener(new OnClickListener() {
 
 					public void onClick(View v) {
 						remainingPages--;
+//						deleteSuggestion( ((Suggestion) ((View) v.getParent()).getTag()).title );
+//						Log.d("Suggestible", "deleting title: " + ((Suggestion) ((View) v.getParent()).getTag()).title);
 						((ViewGroup) swiper.getChildAt(0)).removeView((View) v.getParent());
 						addCard();
 						
@@ -634,6 +668,16 @@ public class CardActivity extends Activity {
     	return buttons;
     }
 
+    public void deleteSuggestion(String title){
+        SharedPreferences prefs = getPreferences(0);
+        SharedPreferences.Editor prefEdit = prefs.edit();
+        int length = prefs.getInt("length", 0);
+        Log.d("Suggestible", "length of deleted list: " + length);
+        prefEdit.putString(""+length, title);
+        length++;
+        prefEdit.putInt("length", length);
+        Log.d("Suggestible", "new length of deleted list: " + prefs.getInt("length", 0));
+    }
 
     
     

@@ -62,6 +62,9 @@ public class UndeleteActivity extends Activity {
                     }
                 }
                 suggestions.removeAll(checkedItems);
+                if (suggestions.size()==0){
+                	((TextView)(findViewById(R.id.noDelete))).setVisibility(2);
+                }
                 adapter.notifyDataSetChanged();
             }
         });

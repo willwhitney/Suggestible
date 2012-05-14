@@ -28,7 +28,8 @@
                     android:background="@drawable/border"
                     android:maxHeight="200dp"
                     android:maxWidth="150dp"
-                    android:scaleType="fitXY"/>
+                    android:scaleType="fitXY"
+                    android:src="@drawable/loading"/>
             </RelativeLayout>
 		 <LinearLayout 
 		     android:layout_width="fill_parent"
@@ -43,7 +44,8 @@
 		        android:textSize="22sp"
 		        android:textColor="#6d7065"
 		        android:textStyle="bold"
-		        android:text="Iron Man" />
+		        android:minHeight="60dp"
+		        android:gravity="center_vertical" />
 		    <TextView	  
 		        android:layout_marginTop="5dip"      
 		        android:layout_width="fill_parent"
@@ -169,7 +171,8 @@
             android:layout_width="fill_parent"
             android:layout_height="100dip"
             android:gravity="center_horizontal|center_vertical"
-            android:orientation="vertical" >
+            android:orientation="vertical" 
+            android:layout_marginBottom="5dp">
 
             <Button
                 android:id="@+id/theaterbutton"
