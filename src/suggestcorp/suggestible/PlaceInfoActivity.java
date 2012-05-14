@@ -39,8 +39,8 @@ public class PlaceInfoActivity extends Activity {
         String description = getIntent().getStringExtra("description");
         ((TextView) findViewById(R.id.placedescriptionLarge)).setText(description);
         ((TextView) findViewById(R.id.placedescriptionSmall)).setText(description);
-        
-        location = getIntent().getStringExtra("location");
+        if (getIntent().getStringExtra("location") != null)
+        	location = getIntent().getStringExtra("location");
         latitude = getIntent().getDoubleExtra("latitude",latitude);
         longitude = getIntent().getDoubleExtra("longitude",longitude);
         

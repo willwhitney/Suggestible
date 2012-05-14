@@ -43,7 +43,8 @@ public class RestaurantInfoActivity extends Activity {
         	((TextView) findViewById(R.id.restaurantdescriptionSmall)).setText(description);
         }
         
-        location = getIntent().getStringExtra("location");
+        if (getIntent().getStringExtra("location") != null)
+        	location = getIntent().getStringExtra("location");
         latitude = getIntent().getDoubleExtra("latitude",latitude);
         longitude = getIntent().getDoubleExtra("longitude",longitude);
         
