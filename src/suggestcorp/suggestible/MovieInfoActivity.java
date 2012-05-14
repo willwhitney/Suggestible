@@ -4,6 +4,8 @@ package suggestcorp.suggestible;
 
 import org.w3c.dom.Document;
 
+import com.google.gson.Gson;
+
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
