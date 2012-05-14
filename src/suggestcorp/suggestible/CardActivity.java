@@ -69,7 +69,7 @@ public class CardActivity extends Activity {
 			movies = suggestions;
 			fetchedCount++;
 			if (fetchedCount >3) {
-				cardmaker.onPageChanged(-1, 0);
+				doneFetching();
 			}
 		}
 	}
@@ -84,7 +84,7 @@ public class CardActivity extends Activity {
 			books = suggestions;
 			fetchedCount++;
 			if (fetchedCount >3) {
-				cardmaker.onPageChanged(-1, 0);
+				doneFetching();
 			}
 			//Log.d("Suggestible", "first cardType: " + cardType.values()[1]);
 		}
@@ -100,7 +100,7 @@ public class CardActivity extends Activity {
 			restaurants = suggestions;
 			fetchedCount++;
 			if (fetchedCount >3) {
-				cardmaker.onPageChanged(-1, 0);
+				doneFetching();
 			}
 		}
 	}
@@ -115,10 +115,37 @@ public class CardActivity extends Activity {
 			outings = suggestions;
 			fetchedCount++;
 			if (fetchedCount >3) {
-				cardmaker.onPageChanged(-1, 0);
+				doneFetching();
 			}
 			//Log.d("Suggestible", outings.get(0).title);
 		}
+	}
+	
+	private void doneFetching() {
+		cardmaker.onPageChanged(-1, 0);
+		for (int i = 0; i < 4; i++) {
+        	filterButtons[i] = (ImageButton) filters.getChildAt(i);
+        	filterButtons[i].setTag("on");
+        	filterButtons[i].setOnClickListener(new OnClickListener() {
+
+				public void onClick(View v) {
+					if (v.getTag().equals("on")) {
+						if (updateFilters() > 1) {
+							v.setTag("off");
+							filterCards();
+						} else {
+							Toast.makeText(CardActivity.this, "Leave at least one type selected!", Toast.LENGTH_SHORT).show();
+						}
+						
+					} else {
+						v.setTag("on");
+						filterCards();
+					}
+					
+					updateFilters();
+				}
+        	});
+        }
 	}
 	
 	private class DrawableFetcher extends AsyncTask<Suggestion, Void, Drawable> {
@@ -172,6 +199,7 @@ public class CardActivity extends Activity {
         
         locManager = (LocationManager) this.getSystemService(Context.LOCATION_SERVICE);
         location = locManager.getLastKnownLocation(LocationManager.NETWORK_PROVIDER);
+        Log.d("Suggestible", "lat/long: " + location.getLatitude() + "/" + location.getLongitude());
         
         new MovieFetcher().execute();
         new BookFetcher().execute();
@@ -183,29 +211,7 @@ public class CardActivity extends Activity {
         filterButtons = new ImageButton[4];
         filters = (LinearLayout) findViewById(R.id.filters);
                         
-        for (int i = 0; i < 4; i++) {
-        	filterButtons[i] = (ImageButton) filters.getChildAt(i);
-        	filterButtons[i].setTag("on");
-        	filterButtons[i].setOnClickListener(new OnClickListener() {
-
-				public void onClick(View v) {
-					if (v.getTag().equals("on")) {
-						if (updateFilters() > 1) {
-							v.setTag("off");
-							filterCards();
-						} else {
-							Toast.makeText(CardActivity.this, "Leave at least one type selected!", Toast.LENGTH_SHORT).show();
-						}
-						
-					} else {
-						v.setTag("on");
-						filterCards();
-					}
-					
-					updateFilters();
-				}
-        	});
-        }
+        
             
         updateFilters();
         fixFonts();
@@ -256,91 +262,13 @@ public class CardActivity extends Activity {
 
 		public void onPageChanged(final int oldpage, final int newpage) {
 			
+			if (newpage == 0) {
+				addCard();
+			}
+			
 			if (newpage > oldpage) {
-								
-				if (newpage == 0) {
-					Suggestion movie = movies.remove(0);
-					
-					getCardByPageNum(newpage).setTag(movie);
-					String textToSet = movie.title;
-					getTextViewByPageNum(newpage).setText(textToSet);
-
-										
-					new DrawableFetcher().execute(movie);
-					getImageViewByPageNum(newpage).setScaleType(ImageView.ScaleType.FIT_XY);
-					getImageViewByPageNum(newpage).setLayoutParams(new LayoutParams(250, 400));
-					
-					
-					/*
-					if (newpage  + (MAX_PAGES - remainingPages) == 0) {
-						getCardButtonsByPageNum(newpage)[0].setOnClickListener(new OnClickListener() {
-							
-							public void onClick(View v) {
-								Intent detailsIntent = new Intent(CardActivity.this, PlaceInfoActivity.class);
-								CardActivity.this.startActivity(detailsIntent);
-							}
-							
-						});
-					} else if (newpage  + (MAX_PAGES - remainingPages) == 1) {
-						getCardButtonsByPageNum(newpage)[0].setOnClickListener(new OnClickListener() {
-							
-							public void onClick(View v) {
-								Intent detailsIntent = new Intent(CardActivity.this, BookInfoActivity.class);
-								CardActivity.this.startActivity(detailsIntent);
-							}
-							
-						});
-					} else if (newpage  + (MAX_PAGES - remainingPages) == 2) {
-						getCardButtonsByPageNum(newpage)[0].setOnClickListener(new OnClickListener() {
-							
-							public void onClick(View v) {
-								Intent detailsIntent = new Intent(CardActivity.this, MovieInfoActivity.class);
-								CardActivity.this.startActivity(detailsIntent);
-							}
-							
-						});
-					} else if (newpage  + (MAX_PAGES - remainingPages) == 3) {
-						getCardButtonsByPageNum(newpage)[0].setOnClickListener(new OnClickListener() {
-							
-							public void onClick(View v) {
-								Intent detailsIntent = new Intent(CardActivity.this, RestaurantInfoActivity.class);
-								CardActivity.this.startActivity(detailsIntent);
-							}
-							
-						});
-					} else {
-						getCardButtonsByPageNum(newpage)[0].setOnClickListener(new OnClickListener() {
-							
-							public void onClick(View v) {
-
-								Toast.makeText(CardActivity.this, "not implemented", Toast.LENGTH_SHORT).show();
-								
-							}
-						});
-					} */
-					
-					
-					getCardButtonsByPageNum(newpage)[1].setOnClickListener(new OnClickListener() {
-	
-						public void onClick(View v) {
-							remainingPages--;
-							((ViewGroup) swiper.getChildAt(0)).removeView((View) v.getParent().getParent().getParent());
-							addCard();
-							
-						}
-					});
-					addCard();
-				}
-				
 				addCard();
 				fixFonts();
-				
-				// THIS IS HOW YOU ASSIGN STRINGS AS IDs
-				// http://stackoverflow.com/questions/3937010/array-of-imagebuttons-assign-r-view-id-from-a-variable
-//				int resID = getResources().getIdentifier(btnID, "drawable", "com.your.package");
-//				(ImageButton) findViewById(resID);
-
-				
 			}
 			
 		}
@@ -366,6 +294,11 @@ public class CardActivity extends Activity {
 		}
 		
 		public void addCard() {
+			if (swiper.getPageCount() == 1) {
+				((ViewGroup) swiper.getChildAt(0)).removeViewAt(0);
+				addCard();
+			}
+			
 			if (swiper.getPageCount() - swiper.getCurrentPage() < 2) {
 				
 				int cardNum = swiper.getPageCount();
@@ -563,10 +496,11 @@ public class CardActivity extends Activity {
 			}
 			
 
-//			if(swiper.getPageCount() > 10) {
-//				((ViewGroup) swiper.getChildAt(0)).removeViewAt(0);
-//				swiper.scrollToPage(swiper.getCurrentPage() - 1);
-//			}
+			if(swiper.getPageCount() > 15) {
+				int current = swiper.getCurrentPage();
+				((ViewGroup) swiper.getChildAt(0)).removeViewAt(0);
+				swiper.scrollToPage(current - 1);
+			}
 		}
     }
     
