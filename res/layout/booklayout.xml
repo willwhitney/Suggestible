@@ -41,11 +41,31 @@
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="5dip"
-                    android:text="Author"
-                    android:textColor="#000000"
-                    android:textSize="20sp" />
+                    android:text="Title"
+                    android:textColor="#6d7065"
+                    android:textStyle="bold"
+                    android:textSize="22sp" />
 
                 <TextView
+                    android:id="@+id/txttitle"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="5dip"
+                    android:text="Moby Dick"
+                    android:textColor="#000000"
+                    android:textSize="18sp" />
+
+                <TextView
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dip"
+                    android:text="Author"
+                    android:textColor="#6d7065"
+                    android:textStyle="bold"
+                    android:textSize="22sp" />
+
+                <TextView
+                    android:id="@+id/txtauthor"
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="5dip"
@@ -53,37 +73,6 @@
                     android:textColor="#000000"
                     android:textSize="18sp" />
 
-                <TextView
-                    android:layout_width="fill_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="5dip"
-                    android:text="Genre"
-                    android:textColor="#000000"
-                    android:textSize="20sp" />
-
-                <TextView
-                    android:layout_width="fill_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="5dip"
-                    android:text="Adventure"
-                    android:textColor="#000000"
-                    android:textSize="18sp" />
-
-                <TextView
-                    android:layout_width="fill_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="5dip"
-                    android:text="Published"
-                    android:textColor="#000000"
-                    android:textSize="20sp" />
-
-                <TextView
-                    android:layout_width="fill_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="5dip"
-                    android:text="1851"
-                    android:textColor="#000000"
-                    android:textSize="18sp" />
             </LinearLayout>
         </LinearLayout>
 
@@ -110,6 +99,7 @@
             android:layout_alignParentRight="true"
             android:textColor="#6d7065"
             android:background="@null"
+			android:onClick = "showMore"
             android:text="Show More" />
 </RelativeLayout>
         <TextView
